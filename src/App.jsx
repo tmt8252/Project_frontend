@@ -1,8 +1,18 @@
 import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Navigation from './pages/Navigation'
 
 const App = () => {
   return (
-    <div>Hinal Taher Achyut</div>
+    <>
+      <BrowserRouter>
+      <Navigation />
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   )
 }
 

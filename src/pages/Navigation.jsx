@@ -1,9 +1,19 @@
-import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 const Navigation = () => {
-  return (
-    <div>Navigation</div>
-  )
+    
+    return (
+        <nav>
+            <div>
+                <h3 className="Logo">Logo</h3>
+            </div>
+
+
+            <ul>
+                <li><NavLink to={'/'}>Home</NavLink></li>
+            </ul>
+        </nav>
+    )
 }
 
 export default Navigation
