@@ -8,7 +8,7 @@ const Login = () => {
     // Function to validate email
     const validateEmail = (email) => {
         // Check if email contains '@' and ends with '.com'
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email validation
+        const emailPattern = /^[a-zA-Z0-9\-\.]+[@][a-z]+[\.][a-z]{2,3}+$/; // Basic email validation
         return emailPattern.test(email) && email.endsWith('.com');
     };
 
