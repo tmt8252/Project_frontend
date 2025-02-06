@@ -6,18 +6,18 @@ const Login = () => {
     const [error, setError] = useState('');
 
     // Function to validate email
-    const validateEmail = (email) => {
-        // Check if email contains '@' and ends with '.com'
-        const emailPattern = /^[a-zA-Z0-9\-\.]+[@][a-z]+[\.][a-z]{2,3}+$/; // Basic email validation
-        return emailPattern.test(email) && email.endsWith('.com');
-    };
+    // const validateEmail = (email) => {
+    //     // Check if email contains '@' and ends with '.com'
+    //     const emailPattern = /^[a-zA-Z0-9\-\.]+[@][a-z]+[\.][a-z]{2,3}+$/; // Basic email validation
+    //     return emailPattern.test(email) && email.endsWith('.com');
+    // };
 
     // Function to validate password
-    const validatePassword = (password) => {
-        // Check for at least one uppercase letter, one number, one special character, and minimum length of 15
-        const passwordPattern = /^(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&])[A-Za-z\d!@#$%^&*]{8,}$/;
-        return passwordPattern.test(password);
-    };
+    // const validatePassword = (password) => {
+    //     // Check for at least one uppercase letter, one number, one special character, and minimum length of 15
+    //     const passwordPattern = /^(?=.[A-Z])(?=.[0-9])(?=.[!@#$%^&])[A-Za-z\d!@#$%^&*]{8,}$/;
+    //     return passwordPattern.test(password);
+    // };
 
     // Handle form submission
     const handleSubmit = (e) => {
@@ -25,17 +25,17 @@ const Login = () => {
         setError(''); // Reset error message
 console.log("login working");
 
-        // Validate email
-        if (!validateEmail(email)) {
-            setError('Please enter a valid email that ends with .com');
-            return;
-        }
+        // // Validate email
+        // if (!validateEmail(email)) {
+        //     setError('Please enter a valid email that ends with .com');
+        //     return;
+        // }
 
-        // Validate password
-        if (!validatePassword(password)) {
-            setError('Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.');
-            return;
-        }
+        // // Validate password
+        // if (!validatePassword(password)) {
+        //     setError('Password must be at least 8 characters long, contain at least one uppercase letter, one number, and one special character.');
+        //     return;
+        // }
 
         // If validation passes, proceed with login logic
         console.log('Logging in with:', { email, password });
