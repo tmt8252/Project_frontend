@@ -46,7 +46,7 @@ body {
 
 /* Background with image and opacity */
 .loginBackground, .registerBackground {
-  background: url("../Assets/books.jpg")
+  background: url("./Assets/books.jpg")
     no-repeat center center/cover;
   display: flex;
   justify-content: center;
