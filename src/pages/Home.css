@@ -1,8 +1,9 @@
 /* styles.css */
 
 .container {
-  background-color: #f3f4f6;
+  background-color: #f4e3d7;
   padding: 2.5rem 0;
+  height: 1000px;
 }
 
 .text-center {
@@ -12,7 +13,7 @@
 .title {
   font-size: 1.875rem;
   font-weight: 700;
-  color: #1f2937;
+  color: #5e3b29;
   margin-bottom: 2rem;
 }
 
@@ -20,11 +21,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .category-card {
-  background-color: #ffffff;
+  background-color: #e7cbb8;
   border-radius: 0.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   padding: 1.25rem;
@@ -48,10 +49,10 @@
 .category-title {
   font-size: 1.25rem;
   font-weight: 600;
-  color: #374151;
+  color: #6b4a35;
   margin-bottom: 0.75rem;
 }
 
 .category-description {
-  color: #6b7280;
+  color: #8d6e63;
 }

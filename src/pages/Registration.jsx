@@ -26,7 +26,7 @@ const Registration = () => {
             <label>Address</label>
             <textarea id="address" placeholder="Enter your address" required />
             
-            <button type="submit">Register</button>
+            <button className='submitBtn' type="submit">Register</button>
           </form>
           <p>Already have an account? <a href="/login">Login</a></p>
         </div>
