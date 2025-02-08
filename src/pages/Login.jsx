@@ -16,7 +16,7 @@ const Login = () => {
     };
 
     const handleRegisterNavigation = () => {
-        navigate('/register');
+        navigate('/registration');
     }
 
     return (
@@ -24,7 +24,7 @@ const Login = () => {
             <div className="loginContainer">
                 <h1 className='loginH1'>Login</h1>
                 <form>
-                    <label htmlFor="email">Email</label>
+                    <label className='label' htmlFor="email">Email</label>
                     <input
                         type="email"
                         id="email"
@@ -34,7 +34,7 @@ const Login = () => {
                         required
                     />
 
-                    <label htmlFor="password">Password</label>
+                    <label className='label' htmlFor="password">Password</label>
                     <input
                         type="password"
                         id="password"
@@ -44,7 +44,7 @@ const Login = () => {
                         required
                     />
 
-                    {error && <p className="error">{error}</p>}
+                    {/* {error && <p className="error">{error}</p>} */}
 
                     <button className='submitBtn' type="submit" onClick={handleSubmit}>Login</button>
                 </form>

@@ -5,6 +5,7 @@
   position: relative;
 }
 
+/* Navigation */
 nav {
   z-index: 1;
   position: sticky;
@@ -16,6 +17,7 @@ nav {
   color: #f4e3d7;
   padding: 10px 100px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
   a {
     color: inherit;
   }
@@ -33,7 +35,46 @@ nav {
     }
   }
 }
+nav div a img {
+  width: 70px;
+  height: 70px;
+}
 
+/* Search Bar Styling */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.search-bar input {
+  padding: 5px 10px;
+  border: 1px solid #d4a373;
+  border-radius: 5px;
+  background-color: #f4e3d7;
+  color: #5e3b29;
+  font-size: 14px;
+  width: 400px;
+  height: 35px;
+}
+
+.search-bar input::placeholder {
+  color: #5e3b29;
+}
+
+.search-bar button {
+  padding: 5px 15px;
+  background-color: #d4a373;
+  border: none;
+  border-radius: 5px;
+  color: #5e3b29;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #b5835a;
+}
 
 
 .active {
@@ -77,7 +118,7 @@ body {
   z-index: 0;
 }
 
-/* Login form container */
+/* Login/Register form container */
 .loginContainer, .registerContainer {
   color: #5e3b29;
   margin: 20px 0 ;
@@ -85,7 +126,6 @@ body {
   border-radius: 10px;
   width: 400px;
   background-color: rgba(244, 227, 215,0.75);
-  z-index: 2;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -98,7 +138,7 @@ body {
   font-family: "Montserrat", sans-serif;
 }
 
-label {
+.label {
   font-size: 18px;
   color: #5e3b29;
   font-weight: bold;
@@ -144,7 +184,7 @@ input {
 
 /* Error Message */
 .error {
-  color: #c0392b; /* Soft red for errors */
+  color: #c0392b;
   font-size: 14px;
   margin-top: -15px;
   margin-bottom: 15px;
@@ -152,7 +192,7 @@ input {
 
 
 /* Link styling */
-.registerNavigation {
+.registerNavigation, .loginNavigation {
   color: #8a6343;
   text-decoration: none;
   border: none;
@@ -161,7 +201,7 @@ input {
   margin-top: 5px;
 }
 
-.registerNavigation:hover {
+.registerNavigation:hover, .loginNavigation:hover {
   text-decoration: underline;
   cursor: pointer;
 }
