@@ -35,11 +35,9 @@ const Navigation = () => {
                             </div>
                         </li>
                         <li>
-                            <NavLink to={'/cart'} className="cart-link" data-tooltip="Shopping Cart">
-                                <div className="icon-container">
-                                    <i className="fas fa-shopping-cart"></i>
-                                </div>
-                                Cart
+                            <NavLink to={'/cart'} className="cart-button">
+                                <i className="fas fa-shopping-cart"></i>
+                                <span className="cart-text">Cart</span>
                                 <span className="cart-count">0</span>
                             </NavLink>
                         </li>
