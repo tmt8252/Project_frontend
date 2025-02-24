@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import BookCard from "./BookCard.jsx"; // Import the BookCard component
 import books from "./Book"; // Import the books array
@@ -31,14 +31,14 @@ const BookSlider = () => {
   };
 
   return (
-    <div className="slider-container">
+    <>
       <h2 className="slider-title">Trending Books</h2>
       <Slider {...settings}>
         {books.map((book) => (
           <BookCard key={book.id} book={book} />
         ))}
       </Slider>
-    </div>
+    </>
   );
 };
 

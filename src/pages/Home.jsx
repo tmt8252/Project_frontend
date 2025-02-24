@@ -9,11 +9,22 @@ import BookSlider from './BookSlider';
 const Home = () => {
   return (
     <>
+      <div className="hero-container">
+        {/* Overlay for better readability */}
+        <div className="hero-overlay"></div>
+
+        {/* Content */}
+        <div className="hero-content">
+          <h1 className="hero-title">Discover Your Next Favorite Book</h1>
+          <p className="hero-subtitle">
+            Explore our vast collection of books and find stories that will
+            transport you to new worlds.
+          </p>
+          <button className="hero-button">Shop Now →</button>
+        </div>
+      </div>
+
       <div className="app-container">
-        <h1 className="website-title">📚 Online Bookstore 📚</h1>
-        <p className="website-subtitle">
-          Discover your next favorite book with our handpicked collection.
-        </p>
         <BookSlider />
       </div>
       <div className="container">
@@ -88,14 +99,7 @@ const Home = () => {
             <p className="form-description">
               We would love to hear from you! Feel free to reach out for any inquiries.
             </p>
-            <div className="contact-details">
-              <p>
-                <i className="fas fa-envelope"></i> support@hello.com
-              </p>
-              <p>
-                <i className="fas fa-phone"></i> +1-202-555-0127
-              </p>
-            </div>
+
             <form className="contact-form">
               <label htmlFor="name">Name</label>
               <input type="text" id="name" placeholder="Your name here" required />
