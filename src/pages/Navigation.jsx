@@ -22,10 +22,10 @@ const Navigation = () => {
                 </div>
                 <div className="nav-right">
                     <ul>
-                        <li><NavLink to={'/'}><i className="fas fa-home"></i> Home</NavLink></li>
+                        <li><NavLink to={'/'}><i className="fas fa-home"></i>Home</NavLink></li>
                         <li className="dropdown">
                             <NavLink to={'/categories'} className="browse-button">
-                                <i className="fas fa-book"></i> Browse <i className="fas fa-chevron-down"></i>
+                                <i className="fas fa-book"></i>Browse<i className="fas fa-chevron-down"></i>
                             </NavLink>
                             <div className="dropdown-content">
                                 <NavLink to="/fiction" className="dropdown-item">
