@@ -15,7 +15,7 @@ const Home = () => {
 
         {/* Content */}
         <div className="hero-content">
-          <h1 className="hero-title">Discover Your Next Favourite Book</h1>
+          <h1 className="hero-title">Escape Into the Pages</h1>
           <p className="hero-subtitle">
             Explore our vast collection of books and find stories that will
             transport you to new worlds.
