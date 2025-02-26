@@ -116,16 +116,45 @@ const Home = () => {
             </form>
           </div>
         </div>
+
+
         <footer className="footer">
-          <ul className="footer-links">
-            <li>Services</li>
-            <li>About</li>
-            <li>Reviews</li>
-            <li>Contacts</li>
-          </ul>
-          <p className="footer-note">
-            &copy; {new Date().getFullYear()} All Rights Reserved. Online Bookstore
-          </p>
+          <div className="footer-container">
+            <div className="footer-section">
+              <h2 className="footer-logo">📖 BookStore</h2>
+              <p>
+                Discover millions of eBooks, audiobooks, magazines, and more. Find
+                your next favorite book and join our community of book lovers.
+              </p>
+              <div className="social-icons">
+                <a href="#" className="social-icon">📘</a>
+                <a href="#" className="social-icon">🐦</a>
+                <a href="#" className="social-icon">📷</a>
+              </div>
+            </div>
+
+            <div className="footer-section">
+              <h3>Quick Links</h3>
+              <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-section">
+              <h3>Newsletter</h3>
+              <p>Subscribe to our newsletter and get notified about new books and exclusive offers.</p>
+              <div className="newsletter">
+                <input type="email" placeholder="Enter your email" />
+                <button>📩</button>
+              </div>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p>© 2025 BookStore. All rights reserved.</p>
+          </div>
         </footer>
       </div>
     </>
