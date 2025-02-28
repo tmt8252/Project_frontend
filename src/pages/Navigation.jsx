@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import logo from '../Assets/logo1.jpg'
+import { BsCart3 } from 'react-icons/bs'  // Cart icon
+import { FiUser } from 'react-icons/fi'   // User/Login icon
 
 const Navigation = () => {
     return (
@@ -60,17 +62,13 @@ const Navigation = () => {
                         </li>
                         <li>
                             <NavLink to={'/cart'} className="cart-button">
-                                <i className="fas fa-shopping-cart"></i>
-                                <span className="cart-text">Cart</span>
+                                <BsCart3 size={20} />
                                 <span className="cart-count">0</span>
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/login'} data-tooltip="Account">
-                                <div className="icon-container">
-                                    <i className="fas fa-user"></i>
-                                </div>
-                                Login
+                            <NavLink to={'/login'} className="login-button">
+                                <FiUser size={20} />
                             </NavLink>
                         </li>
                     </ul>
