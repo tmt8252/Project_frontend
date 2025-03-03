@@ -5,6 +5,7 @@ import lib from "../Assets/lib.jpg"
 import footerImg from "../Assets/footer.jpg"
 import './Home.css'
 import BookSlider from './BookSlider';
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Home = () => {
   return (
@@ -128,16 +129,16 @@ const Home = () => {
                     </p>
                     <div className="social-icons">
                         <a href="#" aria-label="Facebook">
-                            <i className="fab fa-facebook-f"></i>
+                            <FaFacebookF />
                         </a>
                         <a href="#" aria-label="Twitter">
-                            <i className="fab fa-twitter"></i>
+                            <FaTwitter />
                         </a>
                         <a href="#" aria-label="Instagram">
-                            <i className="fab fa-instagram"></i>
+                            <FaInstagram />
                         </a>
                         <a href="#" aria-label="LinkedIn">
-                            <i className="fab fa-linkedin-in"></i>
+                            <FaLinkedinIn />
                         </a>
                     </div>
                 </div>
