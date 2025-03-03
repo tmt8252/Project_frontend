@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom'
 import logo from '../Assets/logo1.jpg'
 import { BsCart3 } from 'react-icons/bs'  // Cart icon
-import { FiUser } from 'react-icons/fi'   // User/Login icon
+import { FiUser, FiSearch } from 'react-icons/fi'   // User/Login icon and Search icon
 
 const Navigation = () => {
     return (
@@ -18,8 +18,13 @@ const Navigation = () => {
                 </div>
                 <div className="nav-center">
                     <div className="search-bar">
-                        <input type="text" placeholder="Search for books, authors, genres..." />
-                        <button><i className="fas fa-search"></i></button>
+                        <button>
+                            <FiSearch className="search-icon" />
+                        </button>
+                        <input 
+                            type="text" 
+                            placeholder="Search for books, authors, genres..." 
+                        />
                     </div>
                 </div>
                 <div className="nav-right">
@@ -67,7 +72,7 @@ const Navigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={'/login'} className="login-button">
+                            <NavLink to={'/login'} className="nav-login-button">
                                 <FiUser size={20} />
                             </NavLink>
                         </li>
