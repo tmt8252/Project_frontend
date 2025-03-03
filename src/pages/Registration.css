@@ -127,9 +127,6 @@
     margin: 0;
 }
 
-.form-group input[type="number"] {
-    -moz-appearance: textfield;
-}
 
 .register-button {
     width: 100%;
