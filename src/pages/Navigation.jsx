@@ -29,41 +29,42 @@ const Navigation = () => {
                 </div>
                 <div className="nav-right">
                     <ul>
-                        <li><NavLink to={'/'}><i className="fas fa-home"></i>Home</NavLink></li>
+                        <li><NavLink to={'/'}>Home</NavLink></li>
                         <li className="dropdown">
                             <NavLink to={'/categories'} className="browse-button">
-                                <i className="fas fa-book"></i>Browse<i className="fas fa-chevron-down"></i>
+                                Browse
                             </NavLink>
                             <div className="dropdown-content">
                                 <NavLink to="/fiction" className="dropdown-item">
-                                    <i className="fas fa-theater-masks"></i>
                                     <div>
                                         <span>Fiction</span>
                                         <small>Novels, Stories & More</small>
                                     </div>
                                 </NavLink>
                                 <NavLink to="/non-fiction" className="dropdown-item">
-                                    <i className="fas fa-brain"></i>
                                     <div>
                                         <span>Non-Fiction</span>
                                         <small>Biography, Self-Help & More</small>
                                     </div>
                                 </NavLink>
                                 <NavLink to="/children" className="dropdown-item">
-                                    <i className="fas fa-child"></i>
                                     <div>
                                         <span>Children's</span>
                                         <small>Picture Books & Stories</small>
                                     </div>
                                 </NavLink>
                                 <NavLink to="/academic" className="dropdown-item">
-                                    <i className="fas fa-graduation-cap"></i>
                                     <div>
                                         <span>Academic</span>
                                         <small>Textbooks & Study Materials</small>
                                     </div>
                                 </NavLink>
                             </div>
+                        </li>
+                        <li>
+                            <NavLink to={'/pre-owned'} className="nav-item">
+                                Pre-owned Books
+                            </NavLink>
                         </li>
                         <li>
                             <NavLink to={'/cart'} className="cart-button">

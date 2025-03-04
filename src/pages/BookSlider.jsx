@@ -9,8 +9,8 @@ const BookSlider = () => {
   const settings = {
     dots: true, // Show navigation dots
     infinite: true, // Loop through books
-    speed: 500, // Transition speed
-    slidesToShow: 3, // Number of cards visible
+    speed: 600, // Transition speed
+    slidesToShow: 4, // Number of cards visible
     slidesToScroll: 1, // Scroll one card at a time
     autoplay: true, // Auto-slide enabled
     autoplaySpeed: 2000, // Slide every 2 seconds
