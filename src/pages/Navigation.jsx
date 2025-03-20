@@ -48,13 +48,13 @@ const Navigation = () => {
                     <small>Novels, Stories & More</small>
                   </div>
                 </NavLink>
-                <NavLink to="/non-fiction" className="dropdown-item">
+                <NavLink to="/Non-Fiction" className="dropdown-item">
                   <div>
                     <span>Non-Fiction</span>
                     <small>Biography, Self-Help & More</small>
                   </div>
                 </NavLink>
-                <NavLink to="/children" className="dropdown-item">
+                <NavLink to="/Children" className="dropdown-item">
                   <div>
                     <span>Children's</span>
                     <small>Picture Books & Stories</small>
@@ -85,7 +85,7 @@ const Navigation = () => {
                   <FiUser size={20} />
                   <ul className="dropdown-menu">
                     <li>
-                      <NavLink to="/login">Login / Register</NavLink>
+                      <NavLink to="/login">Login</NavLink>
                     </li>
                     <li>
                       <NavLink to="/orders">Orders</NavLink>

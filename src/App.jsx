@@ -5,6 +5,8 @@ import Navigation from './pages/Navigation'
 import Registration from './pages/Registration'
 import Login from './pages/Login'
 import Fiction from './books_api/Fiction'
+import NonFiction from './books_api/NonFiction'
+import Footer from './pages/Footer'
 
 const App = () => {
   return (
@@ -15,8 +17,10 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registration" element={<Registration />} />
-          <Route path='Fiction' element={<Fiction />} />
+          <Route path='/Fiction' element={<Fiction />} />
+          <Route path='/Non-Fiction' element={<NonFiction />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   )
