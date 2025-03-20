@@ -1,4 +1,4 @@
-/* Fiction.css - Matching with index.css theme */
+/*! Fiction.css - Matching with index.css theme */
 
 .fiction-container {
     padding: 2rem;
@@ -112,7 +112,7 @@
   }
 
 
-  /* Non-Fiction.css - Matching with index.css theme */
+  /*! Non-Fiction.css - Matching with index.css theme */
 
 .nonf-container {
   padding: 2rem;
@@ -128,80 +128,6 @@
   font-weight: 700;
 }
 
-.books-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.book-card {
-  background-color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.book-image-container {
-  height: 250px;
-  overflow: hidden;
-}
-
-.book-image {
-  width: 100%;
-  height: 400px;
-  object-fit: fill;
-  transition: transform 0.5s ease;
-}
-
-.book-card:hover .book-image {
-  transform: scale(1.05);
-}
-
-.book-details {
-  padding: 1.5rem;
-}
-
-.book-title {
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: #333;
-  font-weight: 600;
-}
-
-.book-author {
-  color: #666;
-  margin-bottom: 0.5rem;
-}
-
-.book-price {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #e63946;
-  margin-bottom: 1rem;
-}
-
-.add-to-cart-btn {
-  display: block;
-  width: 100%;
-  padding: 0.75rem;
-  background-color: #457b9d;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.add-to-cart-btn:hover {
-  background-color: #1d3557;
-}
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
@@ -222,5 +148,321 @@
   
   .nonf-container {
     padding : 1rem;
+  }
+}
+
+/*! Children.css - Matching with index.css theme */
+
+.children-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.children-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .children-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .children-container {
+    padding: 1rem;
+  }
+}
+
+
+/*! Romance.css - Matching with index.css theme */
+
+.romance-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.romance-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .romance-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .romance-container {
+    padding: 1rem;
+  }
+}
+
+
+/*! Drama.css - Matching with index.css theme */
+
+.drama-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.drama-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .drama-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .drama-container {
+    padding: 1rem;
+  }
+}
+
+/*! Horror.css - Matching with index.css theme */
+
+.horror-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.horror-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .horror-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .horror-container {
+    padding: 1rem;
+  }
+}
+
+/*! Thriller.css - Matching with index.css theme */
+
+.thriller-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.thriller-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .thriller-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .thriller-container {
+    padding: 1rem;
+  }
+}
+
+
+/*! HistoricalFiction.css - Matching with index.css theme */
+
+.historicalFiction-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.historicalFiction-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .historicalFiction-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .historicalFiction-container {
+    padding: 1rem;
+  }
+}
+
+
+/*! ScienceFiction.css - Matching with index.css theme */
+
+.scienceFiction-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.scienceFiction-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .scienceFiction-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .scienceFiction-container {
+    padding: 1rem;
+  }
+}
+
+/*! Comedy.css - Matching with index.css theme */
+
+.comedy-container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.comedy-title {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .comedy-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .books-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .comedy-container {
+    padding: 1rem;
   }
 }

@@ -13,12 +13,18 @@ const Home = () => {
 
   const navigateFiction = useNavigate()
   const navigateNonFiction = useNavigate()
+  const navigateChildren = useNavigate()
+
   const handleFiction = () => {
     navigateFiction("/Fiction")
   }
   const handleNonFiction = () => {
     navigateNonFiction("/Non-Fiction")
   }
+  const handleChildren = () => { 
+    navigateChildren("/Children")
+  }
+
   return (
     <>
       <div className="hero-container">
@@ -77,7 +83,7 @@ const Home = () => {
             </div>
 
             {/* Children's Books */}
-            <div className="category-card">
+            <div className="category-card" onClick={handleChildren}>
               <div className="image-container">
                 <img
                   src={lib}

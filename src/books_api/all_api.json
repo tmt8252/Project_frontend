@@ -219,7 +219,7 @@
     "published_date": "2013-10-22",
     "image": "https://m.media-amazon.com/images/I/41E573sd26L._SY445_SX342_.jpg"
   },
-  // Non-Fiction
+
   {
     "id": 21,
     "title": "Sapiens: A Brief History of Humankind",
@@ -440,12 +440,12 @@
     "published_date": "2021-03-09",
     "image": "https://m.media-amazon.com/images/I/41an9tLSfBL._SY445_SX342_.jpg"
   },
-  // Children’s
+
   {
     "id": 41,
     "title": "Harry Potter series",
     "author": "J.K. Rowling",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "The magical journey of a young wizard, Harry Potter",
     "isbn13": "9780545162074",
     "price": "5,200",
@@ -456,7 +456,7 @@
     "id": 42,
     "title": "The Chronicles of Narnia",
     "author": "C.S. Lewis",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "A magical world discovered through a wardrobe",
     "isbn13": "9780066238509",
     "price": "5,300",
@@ -465,9 +465,9 @@
   },
   {
     "id": 43,
-    "title": "Charlotte’s Web",
+    "title": "Charlotte's Web",
     "author": "E.B. White",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "A touching story of friendship between a pig and a spider",
     "isbn13": "9780064400557",
     "price": "5,400",
@@ -478,7 +478,7 @@
     "id": 44,
     "title": "Matilda",
     "author": "Roald Dahl",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "The story of a gifted girl with telekinetic powers",
     "isbn13": "9780142410370",
     "price": "5,500",
@@ -489,8 +489,8 @@
     "id": 45,
     "title": "The Tale of Peter Rabbit",
     "author": "Beatrix Potter",
-    "genre": "Children’s",
-    "subtitle": "A mischievous rabbit’s adventure in Mr. McGregor’s garden",
+    "genre": "Children's",
+    "subtitle": "A mischievous rabbit's adventure in Mr. McGregor's garden",
     "isbn13": "9780723247708",
     "price": "5,600",
     "published_date": "1902-10-02",
@@ -500,7 +500,7 @@
     "id": 46,
     "title": "The Secret Garden",
     "author": "Frances Hodgson Burnett",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "A story of discovery, healing, and a hidden garden",
     "isbn13": "9780064401882",
     "price": "5,700",
@@ -511,8 +511,8 @@
     "id": 47,
     "title": "Where the Wild Things Are",
     "author": "Maurice Sendak",
-    "genre": "Children’s",
-    "subtitle": "A boy’s adventure to a world of wild creatures",
+    "genre": "Children's",
+    "subtitle": "A boy's adventure to a world of wild creatures",
     "isbn13": "9780064431780",
     "price": "5,800",
     "published_date": "1963-04-09",
@@ -520,10 +520,10 @@
   },
   {
     "id": 48,
-    "title": "Alice’s Adventures in Wonderland",
+    "title": "Alice's Adventures in Wonderland",
     "author": "Lewis Carroll",
-    "genre": "Children’s",
-    "subtitle": "A girl’s whimsical journey through Wonderland",
+    "genre": "Children's",
+    "subtitle": "A girl's whimsical journey through Wonderland",
     "isbn13": "9781503250215",
     "price": "5,900",
     "published_date": "1865-11-26",
@@ -533,8 +533,8 @@
     "id": 49,
     "title": "The Gruffalo",
     "author": "Julia Donaldson",
-    "genre": "Children’s",
-    "subtitle": "A clever mouse’s adventure in the woods",
+    "genre": "Children's",
+    "subtitle": "A clever mouse's adventure in the woods",
     "isbn13": "9780333710937",
     "price": "6,000",
     "published_date": "1999-03-23",
@@ -544,7 +544,7 @@
     "id": 50,
     "title": "Percy Jackson & the Olympians",
     "author": "Rick Riordan",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "A modern take on Greek mythology through the eyes of a demigod",
     "isbn13": "9780786838653",
     "price": "6,100",
@@ -555,7 +555,7 @@
     "id": 51,
     "title": "Anne of Green Gables",
     "author": "L.M. Montgomery",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "The adventures of Anne Shirley in Avonlea",
     "isbn13": "9780553213133",
     "price": "6,200",
@@ -566,7 +566,7 @@
     "id": 52,
     "title": "The Little Prince",
     "author": "Antoine de Saint-Exupéry",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "A philosophical tale of a young prince exploring the universe",
     "isbn13": "9780156012195",
     "price": "6,300",
@@ -577,7 +577,7 @@
     "id": 53,
     "title": "The Cat in the Hat",
     "author": "Dr. Seuss",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "A mischievous cat brings chaos and fun",
     "isbn13": "9780394800011",
     "price": "6,400",
@@ -588,7 +588,7 @@
     "id": 54,
     "title": "Winnie-the-Pooh",
     "author": "A.A. Milne",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "The adventures of Winnie-the-Pooh and friends in Hundred Acre Wood",
     "isbn13": "9780140361216",
     "price": "6,500",
@@ -599,8 +599,8 @@
     "id": 55,
     "title": "Coraline",
     "author": "Neil Gaiman",
-    "genre": "Children’s",
-    "subtitle": "A young girl discovers a parallel world that’s not what it seems",
+    "genre": "Children's",
+    "subtitle": "A young girl discovers a parallel world that's not what it seems",
     "isbn13": "9780380807345",
     "price": "6,600",
     "published_date": "2002-08-04",
@@ -610,7 +610,7 @@
     "id": 56,
     "title": "James and the Giant Peach",
     "author": "Roald Dahl",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "A magical journey aboard a giant peach",
     "isbn13": "9780142410363",
     "price": "6,700",
@@ -621,8 +621,8 @@
     "id": 57,
     "title": "The BFG",
     "author": "Roald Dahl",
-    "genre": "Children’s",
-    "subtitle": "A big friendly giant and a little girl’s adventure",
+    "genre": "Children's",
+    "subtitle": "A big friendly giant and a little girl's adventure",
     "isbn13": "9780141365428",
     "price": "6,800",
     "published_date": "1982-10-01",
@@ -632,7 +632,7 @@
     "id": 58,
     "title": "The Boxcar Children",
     "author": "Gertrude Chandler Warner",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "Four orphans create a home in an abandoned boxcar",
     "isbn13": "9780807508527",
     "price": "6,900",
@@ -643,7 +643,7 @@
     "id": 59,
     "title": "Diary of a Wimpy Kid",
     "author": "Jeff Kinney",
-    "genre": "Children’s",
+    "genre": "Children's",
     "subtitle": "The hilarious diary of a middle schooler, Greg Heffley",
     "isbn13": "9780810993136",
     "price": "7,000",
@@ -653,15 +653,15 @@
   {
     "id": 60,
     "title": "A Wrinkle in Time",
-    "author": "Madeleine L’Engle",
-    "genre": "Children’s",
-    "subtitle": "A cosmic adventure to save Meg’s father",
+    "author": "Madeleine L'Engle",
+    "genre": "Children's",
+    "subtitle": "A cosmic adventure to save Meg's father",
     "isbn13": "9780312367541",
     "price": "7,100",
     "published_date": "1962-01-01",
     "image": "https://m.media-amazon.com/images/I/41vyKV6EshL._SX342_SY445_.jpg"
   },
-  // Romance
+
   {
     "id": 61,
     "title": "Pride and Prejudice",
@@ -752,7 +752,7 @@
   },
   {
     "id": 69,
-    "title": "The Time Traveler’s Wife",
+    "title": "The Time Traveler's Wife",
     "author": "Audrey Niffenegger",
     "genre": "Romance",
     "subtitle": "A love story across time",
@@ -882,7 +882,7 @@
     "published_date": "2013-02-26",
     "image": "https://m.media-amazon.com/images/I/41c7owATnSL._SY445_SX342_.jpg"
   },
-  // Drama
+
   {
     "id": 81,
     "title": "Wuthering Heights",
@@ -965,7 +965,7 @@
     "title": "The Remains of the Day",
     "author": "Kazuo Ishiguro",
     "genre": "Drama",
-    "subtitle": "A butler’s reflections on duty and lost love",
+    "subtitle": "A butler's reflections on duty and lost love",
     "isbn13": "9780679731726",
     "price": "1,900",
     "published_date": "1989-05-01",
@@ -1103,7 +1103,7 @@
     "published_date": "2010-09-13",
     "image": "https://m.media-amazon.com/images/I/410M6-c25WL._SY445_SX342_.jpg"
   },
-  //Horror
+
   {
     "id": 101,
     "title": "The Shining",
@@ -1216,7 +1216,7 @@
   },
   {
     "id": 111,
-    "title": "Salem’s Lot",
+    "title": "Salem's Lot",
     "author": "Stephen King",
     "genre": "Horror",
     "subtitle": "A town falls prey to a sinister vampire",
@@ -1271,7 +1271,7 @@
   },
   {
     "id": 116,
-    "title": "Clive Barker’s Books of Blood",
+    "title": "Clive Barker's Books of Blood",
     "author": "Clive Barker",
     "genre": "Horror",
     "subtitle": "A chilling collection of horror stories",
@@ -1324,7 +1324,7 @@
     "published_date": "2021-09-28",
     "image": "https://m.media-amazon.com/images/I/51j+ob2jDpL._SY445_SX342_.jpg"
   },
-  //Thriller
+
   {
     "id": 121,
     "title": "Gone Girl",
@@ -1545,7 +1545,7 @@
     "published_date": "2015-08-04",
     "image": "https://m.media-amazon.com/images/I/818uFTF+bbS._SL1500_.jpg"
   },
-  //Historical Fiction
+
   {
     "id": 141,
     "title": "The Nightingale",
@@ -1562,7 +1562,7 @@
     "title": "The Book Thief",
     "author": "Markus Zusak",
     "genre": "Historical Fiction",
-    "subtitle": "A young girl’s love for books in Nazi Germany",
+    "subtitle": "A young girl's love for books in Nazi Germany",
     "isbn13": "9780375842207",
     "price": "2,400",
     "published_date": "2005-03-14",
@@ -1694,7 +1694,7 @@
     "title": "The Paris Library",
     "author": "Janet Skeslien Charles",
     "genre": "Historical Fiction",
-    "subtitle": "A librarian’s fight to save books during World War II",
+    "subtitle": "A librarian's fight to save books during World War II",
     "isbn13": "9781982134198",
     "price": "2,400",
     "published_date": "2021-02-09",
@@ -1766,7 +1766,7 @@
     "published_date": "2021-03-09",
     "image": "https://m.media-amazon.com/images/I/51tz86kCZyL._SY445_SX342_.jpg"
   },
-  // Science Fiction
+  
   {
     "id": 161,
     "title": "Dune",
@@ -1835,7 +1835,7 @@
   },
   {
     "id": 167,
-    "title": "Ender’s Game",
+    "title": "Ender's Game",
     "author": "Orson Scott Card",
     "genre": "Science Fiction",
     "subtitle": "A young boy is trained to be Earth's ultimate strategist",
@@ -1934,7 +1934,7 @@
   },
   {
     "id": 176,
-    "title": "Old Man’s War",
+    "title": "Old Man's War",
     "author": "John Scalzi",
     "genre": "Science Fiction",
     "subtitle": "A gripping military sci-fi story of second chances",
@@ -1967,7 +1967,7 @@
   },
   {
     "id": 179,
-    "title": "The Hitchhiker’s Guide to the Galaxy",
+    "title": "The Hitchhiker's Guide to the Galaxy",
     "author": "Douglas Adams",
     "genre": "Science Fiction",
     "subtitle": "A hilarious intergalactic adventure",
@@ -1987,7 +1987,7 @@
     "published_date": "1992-09-01",
     "image": "https://m.media-amazon.com/images/I/41cOHenllyL._SY445_SX342_.jpg"
   },
-  //Comedy
+
   {
     "id": 181,
     "title": "Good Omens",
@@ -2001,7 +2001,7 @@
   },
   {
     "id": 182,
-    "title": "The Hitchhiker’s Guide to the Galaxy",
+    "title": "The Hitchhiker's Guide to the Galaxy",
     "author": "Douglas Adams",
     "genre": "Comedy",
     "subtitle": "A wildly funny space adventure with absurd twists",
@@ -2034,7 +2034,7 @@
   },
   {
     "id": 185,
-    "title": "Bridget Jones’s Diary",
+    "title": "Bridget Jones's Diary",
     "author": "Helen Fielding",
     "genre": "Comedy",
     "subtitle": "A laugh-out-loud diary of modern dating and self-discovery",
@@ -2078,7 +2078,7 @@
   },
   {
     "id": 189,
-    "title": "Where’d You Go, Bernadette",
+    "title": "Where'd You Go, Bernadette",
     "author": "Maria Semple",
     "genre": "Comedy",
     "subtitle": "A witty mystery about a missing mother",
@@ -2100,7 +2100,7 @@
   },
   {
     "id": 191,
-    "title": "Lamb: The Gospel According to Biff, Christ’s Childhood Pal",
+    "title": "Lamb: The Gospel According to Biff, Christ's Childhood Pal",
     "author": "Christopher Moore",
     "genre": "Comedy",
     "subtitle": "A hilarious retelling of Jesus' early years through the eyes of his best friend",

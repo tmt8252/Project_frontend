@@ -60,10 +60,46 @@ const Navigation = () => {
                     <small>Picture Books & Stories</small>
                   </div>
                 </NavLink>
-                <NavLink to="/academic" className="dropdown-item">
+                <NavLink to="/Romance" className="dropdown-item">
                   <div>
-                    <span>Academic</span>
-                    <small>Textbooks & Study Materials</small>
+                    <span>Romance</span>
+                    <small>Love Stories & Romantic Tales</small>
+                  </div>
+                </NavLink>
+                <NavLink to="/Drama" className="dropdown-item">
+                  <div>
+                    <span>Drama</span>
+                    <small>Emotional & Dramatic Narratives</small>
+                  </div>
+                </NavLink>
+                <NavLink to="/Horror" className="dropdown-item">
+                  <div>
+                    <span>Horror</span>
+                    <small>Spine-Chilling & Supernatural</small>
+                  </div>
+                </NavLink>
+                <NavLink to="/Thriller" className="dropdown-item">
+                  <div>
+                    <span>Thriller</span>
+                    <small>Suspense, Mystery & Crime</small>
+                  </div>
+                </NavLink>
+                <NavLink to="/HistoricalFiction" className="dropdown-item">
+                  <div>
+                    <span>Historical Fiction</span>
+                    <small>Past Eras & Historical Adventures</small>
+                  </div>
+                </NavLink>
+                <NavLink to="/ScienceFiction" className="dropdown-item">
+                  <div>
+                    <span>Science Fiction</span>
+                    <small>Futuristic & Sci-Fi Wonders</small>
+                  </div>
+                </NavLink>
+                <NavLink to="/Comedy" className="dropdown-item">
+                  <div>
+                    <span>Comedy</span>
+                    <small>Humor & Lighthearted Fun</small>
                   </div>
                 </NavLink>
               </div>

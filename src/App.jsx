@@ -7,6 +7,12 @@ import Login from './pages/Login'
 import Fiction from './books_api/Fiction'
 import NonFiction from './books_api/NonFiction'
 import Footer from './pages/Footer'
+import Children from './books_api/Children'
+import Romance from './books_api/Romance'
+import Drama from './books_api/Drama'
+import Horror from './books_api/Horror'
+import Thriller from './books_api/Thriller'
+import HistoricalFiction from './books_api/HistoricalFiction'
 
 const App = () => {
   return (
@@ -19,6 +25,12 @@ const App = () => {
           <Route path="/registration" element={<Registration />} />
           <Route path='/Fiction' element={<Fiction />} />
           <Route path='/Non-Fiction' element={<NonFiction />} />
+          <Route path='/Children' element={<Children />} />
+          <Route path='/Romance' element={<Romance />} />
+          <Route path='/Drama' element={<Drama />} />
+          <Route path='/Horror' element={<Horror />} />
+          <Route path='/Thriller' element={<Thriller />} />
+          <Route path='/HistoricalFiction' element={<HistoricalFiction />} />
         </Routes>
         <Footer />
       </BrowserRouter>
