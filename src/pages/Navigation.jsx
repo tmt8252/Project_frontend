@@ -84,7 +84,7 @@ const Navigation = () => {
                     <small>Suspense, Mystery & Crime</small>
                   </div>
                 </NavLink>
-                <NavLink to="/HistoricalFiction" className="dropdown-item">
+                {/* <NavLink to="/HistoricalFiction" className="dropdown-item">
                   <div>
                     <span>Historical Fiction</span>
                     <small>Past Eras & Historical Adventures</small>
@@ -101,7 +101,7 @@ const Navigation = () => {
                     <span>Comedy</span>
                     <small>Humor & Lighthearted Fun</small>
                   </div>
-                </NavLink>
+                </NavLink> */}
               </div>
             </li>
             <li>

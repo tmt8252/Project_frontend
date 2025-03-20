@@ -12,7 +12,6 @@ import Romance from './books_api/Romance'
 import Drama from './books_api/Drama'
 import Horror from './books_api/Horror'
 import Thriller from './books_api/Thriller'
-import HistoricalFiction from './books_api/HistoricalFiction'
 
 const App = () => {
   return (
@@ -30,7 +29,6 @@ const App = () => {
           <Route path='/Drama' element={<Drama />} />
           <Route path='/Horror' element={<Horror />} />
           <Route path='/Thriller' element={<Thriller />} />
-          <Route path='/HistoricalFiction' element={<HistoricalFiction />} />
         </Routes>
         <Footer />
       </BrowserRouter>
