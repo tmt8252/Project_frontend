@@ -3,12 +3,17 @@ import logo from "../Assets/Logo_new.png";
 import { BsCart3 } from "react-icons/bs"; // Cart icon
 import { FiUser, FiSearch } from "react-icons/fi"; // User/Login icon and Search icon
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useCart } from "../contexts/CartContext";
 const Navigation = () => {
-  const navigateFiction = useNavigate()
+  const navigateFiction = useNavigate();
 
   const handleFiction = () => {
-    navigateFiction("/Fiction")
-  }
+    navigateFiction("/Fiction");
+  };
+
+  const { logout, isAuthenticated } = useAuth();
+  const { cart } = useCart();
   return (
     <>
       <div className="announcement-bar">
@@ -112,7 +117,7 @@ const Navigation = () => {
             <li>
               <NavLink to={"/cart"} className="cart-button">
                 <BsCart3 size={20} />
-                <span className="cart-count">0</span>
+                <span className="cart-count">{cart.length}</span>
               </NavLink>
             </li>
             <li>
@@ -121,13 +126,17 @@ const Navigation = () => {
                   <FiUser size={20} />
                   <ul className="dropdown-menu">
                     <li>
-                      <NavLink to="/login">Login</NavLink>
+                      {!isAuthenticated && <NavLink to="/login">Login</NavLink>}
                     </li>
                     <li>
                       <NavLink to="/orders">Orders</NavLink>
                     </li>
                     <li>
-                      <NavLink to="/logout">Logout</NavLink>
+                      {isAuthenticated && (
+                        <NavLink to="#" onClick={logout}>
+                          Logout
+                        </NavLink>
+                      )}
                     </li>
                   </ul>
                 </div>

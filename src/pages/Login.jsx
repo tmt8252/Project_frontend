@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiMail, FiLock, FiArrowRight, FiUser } from "react-icons/fi";
 import backgroundImage from "../Assets/books.jpg";
-import '../pages/Login.css'
+import "../pages/Login.css";
+import { useAuth } from "../contexts/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,9 +19,10 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Logging in with:", { email, password });
+      await login(email, password);
+      navigate("/");
     } catch (err) {
+      console.log(err.response.data);
       setError("Invalid email or password");
     } finally {
       setIsLoading(false);
@@ -90,7 +93,10 @@ const Login = () => {
 
           <div className="login-footer">
             <p>Don't have an account?</p>
-            <button className="register-link" onClick={handleRegisterNavigation}>
+            <button
+              className="register-link"
+              onClick={handleRegisterNavigation}
+            >
               Create an account
             </button>
           </div>

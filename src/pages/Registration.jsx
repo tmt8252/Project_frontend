@@ -1,27 +1,42 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { FiUser, FiMail, FiLock, FiPhone, FiArrowRight } from 'react-icons/fi'
-import backgroundImage from '../Assets/books.jpg'
-import '../pages/Registration.css'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { FiUser, FiMail, FiLock, FiPhone, FiArrowRight } from "react-icons/fi";
+import backgroundImage from "../Assets/books.jpg";
+import "../pages/Registration.css";
+import { useAuth } from "../contexts/AuthContext";
 
 const Registration = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const loginNavigate = useNavigate()
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [number, setNumber] = useState("");
+
+  const navigate = useNavigate();
+  const { register } = useAuth();
 
   const NavigateLogin = () => {
-    loginNavigate('/login')
-  }
+    navigate("/login");
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsLoading(false);
-  }
-  
+    try {
+      await register({ username, email, password, number });
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div className="registerBackground" style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div
+      className="registerBackground"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
       <div className="register-container">
         <div className="register-box">
           <div className="register-header">
@@ -36,11 +51,13 @@ const Registration = () => {
             <div className="form-group">
               <div className="input-icon-wrapper">
                 <FiUser className="input-icon" />
-                <input 
-                  type="text" 
-                  id="name" 
-                  placeholder="Enter your name" 
-                  required 
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Enter your name"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -48,11 +65,13 @@ const Registration = () => {
             <div className="form-group">
               <div className="input-icon-wrapper">
                 <FiMail className="input-icon" />
-                <input 
-                  type="email" 
-                  id="email" 
-                  placeholder="Enter your email" 
-                  required 
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -60,11 +79,13 @@ const Registration = () => {
             <div className="form-group">
               <div className="input-icon-wrapper">
                 <FiLock className="input-icon" />
-                <input 
-                  type="password" 
-                  id="password" 
-                  placeholder="Enter your password" 
-                  required 
+                <input
+                  type="password"
+                  id="password"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
               </div>
             </div>
@@ -72,17 +93,19 @@ const Registration = () => {
             <div className="form-group">
               <div className="input-icon-wrapper">
                 <FiPhone className="input-icon" />
-                <input 
-                  type="tel" 
-                  id="contact" 
-                  placeholder="Enter your contact no" 
-                  required 
+                <input
+                  type="tel"
+                  id="contact"
+                  placeholder="Enter your contact no"
+                  value={number}
+                  onChange={(e) => setNumber(e.target.value)}
+                  required
                 />
               </div>
             </div>
 
-            <button 
-              className={`register-button ${isLoading ? 'loading' : ''}`} 
+            <button
+              className={`register-button ${isLoading ? "loading" : ""}`}
               type="submit"
               disabled={isLoading}
             >
@@ -104,7 +127,7 @@ const Registration = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Registration
+export default Registration;
