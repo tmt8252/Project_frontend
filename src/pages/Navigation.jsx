@@ -2,8 +2,13 @@ import { NavLink } from "react-router-dom";
 import logo from "../Assets/Logo_new.png";
 import { BsCart3 } from "react-icons/bs"; // Cart icon
 import { FiUser, FiSearch } from "react-icons/fi"; // User/Login icon and Search icon
-
+import { useNavigate } from "react-router-dom";
 const Navigation = () => {
+  const navigateFiction = useNavigate()
+
+  const handleFiction = () => {
+    navigateFiction("/Fiction")
+  }
   return (
     <>
       <div className="announcement-bar">
@@ -37,7 +42,7 @@ const Navigation = () => {
                 Browse
               </NavLink>
               <div className="dropdown-content">
-                <NavLink to="/fiction" className="dropdown-item">
+                <NavLink to="/Fiction" className="dropdown-item">
                   <div>
                     <span>Fiction</span>
                     <small>Novels, Stories & More</small>

@@ -6,8 +6,16 @@ import footerImg from "../Assets/footer.jpg"
 import './Home.css'
 import BookSlider from './BookSlider';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom";
+
 
 const Home = () => {
+
+  const navigateFiction = useNavigate()
+
+  const handleFiction = () => {
+    navigateFiction("/Fiction")
+  }
   return (
     <>
       <div className="hero-container">
@@ -33,7 +41,7 @@ const Home = () => {
           <h1 className="title">Explore our book categories</h1>
           <div className="categories">
             {/* Fiction */}
-            <div className="category-card">
+            <div className="category-card" onClick={handleFiction}>
               <div className="image-container">
                 <img
                   src={fictionImage}
