@@ -16,7 +16,7 @@
   
   .books-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
   }
   
@@ -73,9 +73,7 @@
   }
   
   .add-to-cart-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
     width: 100%;
     padding: 0.75rem;
     background-color: #457b9d;
@@ -84,51 +82,22 @@
     border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    gap: 0.5rem;
+    transition: background-color 0.3s ease;
   }
   
   .add-to-cart-btn:hover {
     background-color: #1d3557;
-    transform: translateY(-2px);
-  }
-  
-  .add-to-cart-btn:active {
-    transform: translateY(0);
-  }
-  
-  .add-to-cart-btn i, 
-  .add-to-cart-btn svg {
-    font-size: 1.1rem;
-  }
-  
-  .add-to-cart-btn.added {
-    background-color: #2a9d8f;
-  }
-  
-  /* Animation for cart button when clicked */
-  @keyframes addedToCart {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-  }
-  
-  .add-to-cart-btn.adding {
-    animation: addedToCart 0.5s ease;
   }
   
   /* Responsive adjustments */
-  @media (max-width: 1200px) {
+  @media (max-width: 768px) {
     .books-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 1.5rem;
     }
-  }
-  
-  @media (max-width: 900px) {
-    .books-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
+    
+    .fiction-title {
+      font-size: 2rem;
     }
   }
   
