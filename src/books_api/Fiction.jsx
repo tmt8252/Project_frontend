@@ -4,17 +4,6 @@ const Fiction = () => {
     const fiction = [
         {
           "id": 1,
-          "title": "To Kill a Mockingbird",
-          "author": "Harper Lee",
-          "genre": "Fiction",
-          "subtitle": "A novel about racial injustice in the Deep South",
-          "isbn13": "9780061120084",
-          "price": "1,500",
-          "published_date": "1960-07-11",
-          "image": "https://m.media-amazon.com/images/I/81gepf1eMqL._SL1500_.jpg"
-        },
-        {
-          "id": 2,
           "title": "The Great Gatsby",
           "author": "F. Scott Fitzgerald",
           "genre": "Fiction",
@@ -25,7 +14,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/41LfbREAeyL._SX342_SY445_.jpg"
         },
         {
-          "id": 3,
+          "id": 2,
           "title": "1984",
           "author": "George Orwell",
           "genre": "Fiction",
@@ -36,18 +25,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/517USUJAueL._SX342_SY445_.jpg"
         },
         {
-          "id": 4,
-          "title": "The Catcher in the Rye",
-          "author": "J.D. Salinger",
-          "genre": "Fiction",
-          "subtitle": "A story of teenage rebellion and alienation",
-          "isbn13": "9780316769488",
-          "price": "1,400",
-          "published_date": "1951-07-16",
-          "image": "https://m.media-amazon.com/images/I/418bOQWiRBL._SY445_SX342_.jpg"
-        },
-        {
-          "id": 5,
+          "id": 3,
           "title": "The Alchemist",
           "author": "Paulo Coelho",
           "genre": "Fiction",
@@ -58,7 +36,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/719SAY4GXcL._SL1500_.jpg"
         },
         {
-          "id": 6,
+          "id": 4,
           "title": "Life of Pi",
           "author": "Yann Martel",
           "genre": "Fiction",
@@ -69,7 +47,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/51RXI789M0L._SY445_SX342_.jpg"
         },
         {
-          "id": 7,
+          "id": 5,
           "title": "The Book Thief",
           "author": "Markus Zusak",
           "genre": "Fiction",
@@ -80,7 +58,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/51APkyJzNlL._SY445_SX342_.jpg"
         },
         {
-          "id": 8,
+          "id": 6,
           "title": "The Kite Runner",
           "author": "Khaled Hosseini",
           "genre": "Fiction",
@@ -91,7 +69,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/51bt7LtryoL._SY445_SX342_.jpg"
         },
         {
-          "id": 9,
+          "id": 7,
           "title": "Beloved",
           "author": "Toni Morrison",
           "genre": "Fiction",
@@ -102,7 +80,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/41PgAaTwa6L._SY445_SX342_.jpg"
         },
         {
-          "id": 10,
+          "id": 8,
           "title": "The Road",
           "author": "Cormac McCarthy",
           "genre": "Fiction",
@@ -113,18 +91,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/81ChFcmhXDL._SL1500_.jpg"
         },
         {
-          "id": 11,
-          "title": "Where the Crawdads Sing",
-          "author": "Delia Owens",
-          "genre": "Fiction",
-          "subtitle": "A coming-of-age story set in the marshlands",
-          "isbn13": "9780735219090",
-          "price": "1,800",
-          "published_date": "2018-08-14",
-          "image": "https://m.media-amazon.com/images/I/51Oi0gtmjhL._SY445_SX342_.jpg"
-        },
-        {
-          "id": 12,
+          "id": 9,
           "title": "The Night Circus",
           "author": "Erin Morgenstern",
           "genre": "Fiction",
@@ -135,7 +102,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/81ou5dzXvPL._SL1500_.jpg"
         },
         {
-          "id": 13,
+          "id": 10,
           "title": "Circe",
           "author": "Madeline Miller",
           "genre": "Fiction",
@@ -146,7 +113,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/513SvEhoPnL._SY445_SX342_.jpg"
         },
         {
-          "id": 14,
+          "id": 11,
           "title": "Cloud Atlas",
           "author": "David Mitchell",
           "genre": "Fiction",
@@ -157,7 +124,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/81++Ch8JTkL._SL1500_.jpg"
         },
         {
-          "id": 15,
+          "id": 12,
           "title": "A Man Called Ove",
           "author": "Fredrik Backman",
           "genre": "Fiction",
@@ -168,18 +135,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/41nv31VDDhL._SY445_SX342_.jpg"
         },
         {
-          "id": 16,
-          "title": "The Shadow of the Wind",
-          "author": "Carlos Ruiz Zafón",
-          "genre": "Fiction",
-          "subtitle": "A literary mystery set in post-war Barcelona",
-          "isbn13": "9780143034902",
-          "price": "2,100",
-          "published_date": "2001-04-01",
-          "image": "https://m.media-amazon.com/images/I/41q0lAONh4L._SY445_SX342_.jpg"
-        },
-        {
-          "id": 17,
+          "id": 13,
           "title": "Pachinko",
           "author": "Min Jin Lee",
           "genre": "Fiction",
@@ -190,7 +146,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/71X7VQ6UXGL._SL1500_.jpg"
         },
         {
-          "id": 18,
+          "id": 14,
           "title": "Midnight's Children",
           "author": "Salman Rushdie",
           "genre": "Fiction",
@@ -201,18 +157,7 @@ const Fiction = () => {
           "image": "https://m.media-amazon.com/images/I/91XkGHMI3mS._SL1500_.jpg"
         },
         {
-          "id": 19,
-          "title": "The House of the Spirits",
-          "author": "Isabel Allende",
-          "genre": "Fiction",
-          "subtitle": "A saga of love and revolution in Chile",
-          "isbn13": "9781501117015",
-          "price": "2,400",
-          "published_date": "1982-01-01",
-          "image": "https://m.media-amazon.com/images/I/41-+KHWzkaL._SY445_SX342_.jpg"
-        },
-        {
-          "id": 20,
+          "id": 15,
           "title": "The Goldfinch",
           "author": "Donna Tartt",
           "genre": "Fiction",
