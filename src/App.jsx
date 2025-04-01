@@ -15,6 +15,7 @@ import Thriller from "./books_api/Thriller";
 import SellYourBook from "./pages/SellYourBook";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
+import Cart from "./pages/Cart";
 
 // Admin pages
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -24,7 +25,6 @@ import ManageUsers from "./pages/Admin/ManageUsers";
 import ManageFeedbacks from "./pages/Admin/ManageFeedbacks";
 import ManageRentalBooks from "./pages/Admin/ManageRentalBooks";
 import ManagePreOwnedBooks from "./pages/Admin/ManagePreOwnedBooks";
-import Cart from "./pages/Cart";
 
 const RouteHandler = () => {
   const { isAuthenticated, user } = useAuth();
