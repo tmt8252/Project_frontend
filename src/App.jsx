@@ -15,23 +15,41 @@ import Thriller from "./books_api/Thriller";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 
+// Admin pages
+import AdminDashboard from "./pages/Admin/AdminDashboard";
+import ManageBooks from "./pages/Admin/ManageBooks";
+import ManageOrders from "./pages/Admin/ManageOrders";
+import ManageUsers from "./pages/Admin/ManageUsers";
+import ManageFeedbacks from "./pages/Admin/ManageFeedbacks";
+import ManageRentalBooks from "./pages/Admin/ManageRentalBooks";
+import ManagePreOwnedBooks from "./pages/Admin/ManagePreOwnedBooks";
+
 const RouteHandler = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
+  const isAdmin = user?.role === 'admin'; // Assuming your user object has a role property
+  
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      {/* Customer routes */}
+      {/* <Route path="/" element={<Home />} />
       <Route path="/login" element={isAuthenticated ? <Home /> : <Login />} />
-      <Route
-        path="/registration"
-        element={isAuthenticated ? <Home /> : <Registration />}
-      />
+      <Route path="/registration" element={isAuthenticated ? <Home /> : <Registration />} />
       <Route path="/Fiction" element={<Fiction />} />
       <Route path="/Non-Fiction" element={<NonFiction />} />
       <Route path="/Children" element={<Children />} />
       <Route path="/Romance" element={<Romance />} />
       <Route path="/Drama" element={<Drama />} />
       <Route path="/Horror" element={<Horror />} />
-      <Route path="/Thriller" element={<Thriller />} />
+      <Route path="/Thriller" element={<Thriller />} /> */}
+      
+      {/* Admin routes */}
+      <Route path="/" element={<AdminDashboard /> } />
+      <Route path="/admin/manage-books" element={<ManageBooks /> } />
+      <Route path="/admin/manage-orders" element={<ManageOrders /> } />
+      <Route path="/admin/manage-users" element={<ManageUsers /> } />
+      <Route path="/admin/manage-feedbacks" element={<ManageFeedbacks /> } />
+      <Route path="/admin/manage-rental-books" element={<ManageRentalBooks /> } />
+      <Route path="/admin/manage-pre-owned-books" element={<ManagePreOwnedBooks /> } />
     </Routes>
   );
 };
