@@ -5,6 +5,7 @@ import { FiUser, FiSearch } from "react-icons/fi"; // User/Login icon and Search
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useCart } from "../contexts/CartContext";
+
 const Navigation = () => {
   const navigateFiction = useNavigate();
 
@@ -110,8 +111,8 @@ const Navigation = () => {
               </div>
             </li>
             <li>
-              <NavLink to={"/pre-owned"} className="nav-item">
-                Pre-owned Books
+              <NavLink to={"/sell-book"} className="nav-item sell-books-link">
+                Sell Your Books
               </NavLink>
             </li>
             <li>

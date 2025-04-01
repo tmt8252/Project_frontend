@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaTachometerAlt, FaBook, FaShoppingCart, FaUsers, FaComments, FaSignOutAlt, FaSearch } from 'react-icons/fa';
+import { FaTachometerAlt, FaBook, FaShoppingCart, FaUsers, FaComments, FaSignOutAlt, FaSearch, FaBookReader, FaBookOpen } from 'react-icons/fa';
 import { useAuth } from '../../contexts/AuthContext';
 import './AdminDashboard.css';
+import AdminNavbar from './AdminNavbar';
+import AdminSidebar from './AdminSidebar';
 
 const AdminDashboard = () => {
-  const [activeTab, setActiveTab] = useState('dashboard');
-  const [searchQuery, setSearchQuery] = useState('');
-  const { logout } = useAuth();
-  const navigate = useNavigate();
-
+  
   const [stats, setStats] = useState({
     books: 120,
     orders: 35,
@@ -17,16 +15,6 @@ const AdminDashboard = () => {
     feedbacks: 14
   });
 
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // Implement search logic here
-    console.log("Searching for:", searchQuery);
-  };
 
   useEffect(() => {
     // You would fetch actual stats data from your API here
@@ -35,95 +23,11 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-container">
-      {/* Admin Navbar */}
-      <header className="admin-navbar">
-        <div className="admin-navbar-left">
-          <Link to="/admin" className="admin-logo">
-            <h1 className="store-name">BookStore Admin</h1>
-          </Link>
-        </div>
-        
-        <div className="admin-search">
-          <form onSubmit={handleSearch}>
-            <div className="search-bar">
-              <button type="submit">
-                <FaSearch className="search-icon" />
-              </button>
-              <input 
-                type="text" 
-                placeholder="Search books, orders, users..." 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-          </form>
-        </div>
-        
-        <div className="admin-navbar-right">
-          <button className="logout-btn" onClick={handleLogout}>
-            <FaSignOutAlt />
-            <span>Logout</span>
-          </button>
-        </div>
-      </header>
+      <AdminNavbar />
 
       <div className="admin-content-container">
-        {/* Admin Sidebar */}
-        <aside className="admin-sidebar">
-          <ul>
-            <li>
-              <Link 
-                to="/admin" 
-                className={activeTab === 'dashboard' ? 'active' : ''}
-                onClick={() => setActiveTab('dashboard')}
-              >
-                <FaTachometerAlt />
-                <span>Dashboard</span>
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/manage-books" 
-                className={activeTab === 'books' ? 'active' : ''}
-                onClick={() => setActiveTab('books')}
-              >
-                <FaBook />
-                <span>Books</span>
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/manage-orders" 
-                className={activeTab === 'orders' ? 'active' : ''}
-                onClick={() => setActiveTab('orders')}
-              >
-                <FaShoppingCart />
-                <span>Orders</span>
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/manage-users" 
-                className={activeTab === 'users' ? 'active' : ''}
-                onClick={() => setActiveTab('users')}
-              >
-                <FaUsers />
-                <span>Customers</span>
-              </Link>
-            </li>
-            <li>
-              <Link 
-                to="/admin/manage-feedbacks" 
-                className={activeTab === 'feedbacks' ? 'active' : ''}
-                onClick={() => setActiveTab('feedbacks')}
-              >
-                <FaComments />
-                <span>Feedbacks</span>
-              </Link>
-            </li>
-          </ul>
-        </aside>
-
+        <AdminSidebar />
+        
         {/* Admin Dashboard Content */}
         <main className="admin-content">
           <div className="admin-dashboard-content">

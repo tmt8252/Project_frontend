@@ -1,6 +1,7 @@
 /* Manage Feedbacks Styles */
 .manage-feedbacks-container {
   padding: 0;
+  margin: 50px auto;
 }
 
 .manage-feedbacks-header {

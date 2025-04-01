@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaStar, FaEye } from 'react-icons/fa';
 import './ManageFeedbacks.css';
+import './AdminDashboard.css';
+import AdminNavbar from './AdminNavbar';
+import AdminSidebar from './AdminSidebar';
 
 const ManageFeedbacks = () => {
   const [feedbacks, setFeedbacks] = useState([]);
@@ -94,7 +97,7 @@ const ManageFeedbacks = () => {
         date: '2023-04-12'
       }
     ];
-    
+
     setFeedbacks(mockFeedbacks);
   }, []);
 
@@ -123,141 +126,148 @@ const ManageFeedbacks = () => {
   };
 
   const filteredFeedbacks = feedbacks
-    .filter(feedback => 
+    .filter(feedback =>
       (ratingFilter === 'all' || feedback.rating === parseInt(ratingFilter)) &&
       (feedback.user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-       feedback.book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-       feedback.comment.toLowerCase().includes(searchQuery.toLowerCase()))
+        feedback.book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        feedback.comment.toLowerCase().includes(searchQuery.toLowerCase()))
     );
 
   return (
-    <div className="manage-feedbacks-container">
-      <div className="manage-feedbacks-header">
-        <h2>Manage Feedbacks</h2>
-      </div>
-      
-      <div className="feedbacks-filters">
-        <div className="feedbacks-search-bar">
-          <form onSubmit={handleSearch}>
-            <div className="search-input-container">
-              <FaSearch className="search-icon" />
-              <input 
-                type="text" 
-                placeholder="Search by customer, book, or keywords" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+    <div className="admin-container">
+      <AdminNavbar />
+
+      <div className="admin-content-container">
+        <AdminSidebar />
+        <div className="manage-feedbacks-container">
+          <div className="manage-feedbacks-header">
+            <h2>Manage Feedbacks</h2>
+          </div>
+
+          <div className="feedbacks-filters">
+            <div className="feedbacks-search-bar">
+              <form onSubmit={handleSearch}>
+                <div className="search-input-container">
+                  <FaSearch className="search-icon" />
+                  <input
+                    type="text"
+                    placeholder="Search by customer, book, or keywords"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+              </form>
             </div>
-          </form>
-        </div>
-        
-        <div className="rating-filter">
-          <label htmlFor="rating-select">Filter by Rating:</label>
-          <select 
-            id="rating-select" 
-            value={ratingFilter}
-            onChange={(e) => setRatingFilter(e.target.value)}
-          >
-            <option value="all">All Ratings</option>
-            <option value="5">5 Stars</option>
-            <option value="4">4 Stars</option>
-            <option value="3">3 Stars</option>
-            <option value="2">2 Stars</option>
-            <option value="1">1 Star</option>
-          </select>
-        </div>
-      </div>
-      
-      <div className="feedbacks-table-container">
-        <table className="feedbacks-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Customer</th>
-              <th>Book</th>
-              <th>Rating</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredFeedbacks.map(feedback => (
-              <tr key={feedback.id}>
-                <td>#{feedback.id}</td>
-                <td>{feedback.user.name}</td>
-                <td>{feedback.book.title}</td>
-                <td className="rating-cell">
-                  <div className="rating-stars">
-                    {renderStars(feedback.rating)}
+
+            <div className="rating-filter">
+              <label htmlFor="rating-select">Filter by Rating:</label>
+              <select
+                id="rating-select"
+                value={ratingFilter}
+                onChange={(e) => setRatingFilter(e.target.value)}
+              >
+                <option value="all">All Ratings</option>
+                <option value="5">5 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="2">2 Stars</option>
+                <option value="1">1 Star</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="feedbacks-table-container">
+            <table className="feedbacks-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Customer</th>
+                  <th>Book</th>
+                  <th>Rating</th>
+                  <th>Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredFeedbacks.map(feedback => (
+                  <tr key={feedback.id}>
+                    <td>#{feedback.id}</td>
+                    <td>{feedback.user.name}</td>
+                    <td>{feedback.book.title}</td>
+                    <td className="rating-cell">
+                      <div className="rating-stars">
+                        {renderStars(feedback.rating)}
+                      </div>
+                    </td>
+                    <td>{feedback.date}</td>
+                    <td>
+                      <button
+                        className="view-details-btn"
+                        onClick={() => viewFeedbackDetails(feedback)}
+                      >
+                        <FaEye />
+                        <span>View</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {filteredFeedbacks.length === 0 && (
+                  <tr>
+                    <td colSpan="6" className="no-results">No feedbacks found matching your criteria.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Feedback Details Modal */}
+          {isDetailModalOpen && selectedFeedback && (
+            <div className="feedback-modal-overlay">
+              <div className="feedback-modal">
+                <div className="feedback-modal-header">
+                  <h3>Feedback Details</h3>
+                  <button className="close-btn" onClick={closeDetailModal}>&times;</button>
+                </div>
+
+                <div className="feedback-details">
+                  <div className="feedback-info">
+                    <div className="feedback-book-info">
+                      <h4>{selectedFeedback.book.title}</h4>
+                      <p className="book-author">by {selectedFeedback.book.author}</p>
+                    </div>
+
+                    <div className="feedback-rating">
+                      <div className="rating-stars large">
+                        {renderStars(selectedFeedback.rating)}
+                      </div>
+                      <p className="rating-text">{selectedFeedback.rating} out of 5</p>
+                    </div>
+
+                    <div className="feedback-customer">
+                      <p><strong>Customer:</strong> {selectedFeedback.user.name}</p>
+                      <p><strong>Email:</strong> {selectedFeedback.user.email}</p>
+                      <p><strong>Date:</strong> {selectedFeedback.date}</p>
+                    </div>
+
+                    <div className="feedback-comment">
+                      <h4>Comment</h4>
+                      <div className="comment-text">
+                        <p>{selectedFeedback.comment}</p>
+                      </div>
+                    </div>
                   </div>
-                </td>
-                <td>{feedback.date}</td>
-                <td>
-                  <button 
-                    className="view-details-btn" 
-                    onClick={() => viewFeedbackDetails(feedback)}
-                  >
-                    <FaEye />
-                    <span>View</span>
+                </div>
+
+                <div className="modal-buttons">
+                  <button className="close-modal-btn" onClick={closeDetailModal}>
+                    Close
                   </button>
-                </td>
-              </tr>
-            ))}
-            {filteredFeedbacks.length === 0 && (
-              <tr>
-                <td colSpan="6" className="no-results">No feedbacks found matching your criteria.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-      
-      {/* Feedback Details Modal */}
-      {isDetailModalOpen && selectedFeedback && (
-        <div className="feedback-modal-overlay">
-          <div className="feedback-modal">
-            <div className="feedback-modal-header">
-              <h3>Feedback Details</h3>
-              <button className="close-btn" onClick={closeDetailModal}>&times;</button>
-            </div>
-            
-            <div className="feedback-details">
-              <div className="feedback-info">
-                <div className="feedback-book-info">
-                  <h4>{selectedFeedback.book.title}</h4>
-                  <p className="book-author">by {selectedFeedback.book.author}</p>
-                </div>
-                
-                <div className="feedback-rating">
-                  <div className="rating-stars large">
-                    {renderStars(selectedFeedback.rating)}
-                  </div>
-                  <p className="rating-text">{selectedFeedback.rating} out of 5</p>
-                </div>
-                
-                <div className="feedback-customer">
-                  <p><strong>Customer:</strong> {selectedFeedback.user.name}</p>
-                  <p><strong>Email:</strong> {selectedFeedback.user.email}</p>
-                  <p><strong>Date:</strong> {selectedFeedback.date}</p>
-                </div>
-                
-                <div className="feedback-comment">
-                  <h4>Comment</h4>
-                  <div className="comment-text">
-                    <p>{selectedFeedback.comment}</p>
-                  </div>
                 </div>
               </div>
             </div>
-            
-            <div className="modal-buttons">
-              <button className="close-modal-btn" onClick={closeDetailModal}>
-                Close
-              </button>
-            </div>
-          </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

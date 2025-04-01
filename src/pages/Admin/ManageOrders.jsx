@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaEye, FaCheck, FaTruck, FaBox } from 'react-icons/fa';
 import './ManageOrders.css';
+import './AdminDashboard.css';
+import AdminNavbar from './AdminNavbar';
+import AdminSidebar from './AdminSidebar';
+
 
 const ManageOrders = () => {
   const [orders, setOrders] = useState([]);
@@ -93,7 +97,7 @@ const ManageOrders = () => {
         shippingAddress: '101 Elm St, Elsewhere, FL 13579'
       }
     ];
-    
+
     setOrders(mockOrders);
   }, []);
 
@@ -114,11 +118,11 @@ const ManageOrders = () => {
 
   const updateOrderStatus = (orderId, newStatus) => {
     // In a real app, you would call an API to update the status
-    const updatedOrders = orders.map(order => 
+    const updatedOrders = orders.map(order =>
       order.id === orderId ? { ...order, status: newStatus } : order
     );
     setOrders(updatedOrders);
-    
+
     if (selectedOrder && selectedOrder.id === orderId) {
       setSelectedOrder({ ...selectedOrder, status: newStatus });
     }
@@ -155,223 +159,230 @@ const ManageOrders = () => {
   };
 
   const filteredOrders = orders
-    .filter(order => 
+    .filter(order =>
       (statusFilter === 'all' || order.status === statusFilter) &&
       (order.id.toLowerCase().includes(searchQuery.toLowerCase()) ||
-       order.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-       order.customer.email.toLowerCase().includes(searchQuery.toLowerCase()))
+        order.customer.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        order.customer.email.toLowerCase().includes(searchQuery.toLowerCase()))
     );
 
   return (
-    <div className="manage-orders-container">
-      <div className="manage-orders-header">
-        <h2>Manage Orders</h2>
-      </div>
-      
-      <div className="orders-filters">
-        <div className="orders-search-bar">
-          <form onSubmit={handleSearch}>
-            <div className="search-input-container">
-              <FaSearch className="search-icon" />
-              <input 
-                type="text" 
-                placeholder="Search by order ID, customer name, or email" 
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+    <div className="admin-container">
+      <AdminNavbar />
+
+      <div className="admin-content-container">
+        <AdminSidebar />
+        <div className="manage-orders-container">
+          <div className="manage-orders-header">
+            <h2>Manage Orders</h2>
+          </div>
+
+          <div className="orders-filters">
+            <div className="orders-search-bar">
+              <form onSubmit={handleSearch}>
+                <div className="search-input-container">
+                  <FaSearch className="search-icon" />
+                  <input
+                    type="text"
+                    placeholder="Search by order ID, customer name, or email"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
+              </form>
             </div>
-          </form>
-        </div>
-        
-        <div className="status-filter">
-          <label htmlFor="status-select">Filter by Status:</label>
-          <select 
-            id="status-select" 
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
-          >
-            <option value="all">All Orders</option>
-            <option value="pending">Pending</option>
-            <option value="processing">Processing</option>
-            <option value="shipped">Shipped</option>
-            <option value="delivered">Delivered</option>
-            <option value="cancelled">Cancelled</option>
-          </select>
-        </div>
-      </div>
-      
-      <div className="orders-table-container">
-        <table className="orders-table">
-          <thead>
-            <tr>
-              <th>Order ID</th>
-              <th>Customer</th>
-              <th>Order Date</th>
-              <th>Amount</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredOrders.map(order => (
-              <tr key={order.id}>
-                <td>{order.id}</td>
-                <td>{order.customer.name}</td>
-                <td>{order.orderDate}</td>
-                <td>${order.amount.toFixed(2)}</td>
-                <td>
-                  <span className={`status-badge ${getStatusBadgeClass(order.status)}`}>
-                    {getStatusIcon(order.status)}
-                    {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
-                  </span>
-                </td>
-                <td className="actions-cell">
-                  <button 
-                    className="view-details-btn" 
-                    onClick={() => viewOrderDetails(order)}
-                  >
-                    <FaEye />
-                    <span>View</span>
-                  </button>
-                  
-                  {order.status !== 'delivered' && order.status !== 'cancelled' && (
-                    <button 
-                      className="update-status-btn" 
-                      onClick={() => updateOrderStatus(order.id, getNextStatus(order.status))}
-                    >
-                      {order.status === 'pending' && 'Process'}
-                      {order.status === 'processing' && 'Ship'}
-                      {order.status === 'shipped' && 'Deliver'}
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))}
-            {filteredOrders.length === 0 && (
-              <tr>
-                <td colSpan="6" className="no-results">No orders found matching your criteria.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-      
-      {/* Order Details Modal */}
-      {isDetailModalOpen && selectedOrder && (
-        <div className="order-modal-overlay">
-          <div className="order-modal">
-            <div className="order-modal-header">
-              <h3>Order Details</h3>
-              <button className="close-btn" onClick={closeDetailModal}>&times;</button>
-            </div>
-            
-            <div className="order-details">
-              <div className="order-summary">
-                <div className="order-info">
-                  <div className="order-id">
-                    <h4>Order {selectedOrder.id}</h4>
-                    <span className={`status-badge ${getStatusBadgeClass(selectedOrder.status)}`}>
-                      {getStatusIcon(selectedOrder.status)}
-                      {selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
-                    </span>
-                  </div>
-                  <div className="order-dates">
-                    <div>
-                      <span className="info-label">Order Date:</span>
-                      <span>{selectedOrder.orderDate}</span>
-                    </div>
-                    <div>
-                      <span className="info-label">Expected Delivery:</span>
-                      <span>{selectedOrder.deliveryDate}</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="order-actions">
-                  {selectedOrder.status !== 'delivered' && selectedOrder.status !== 'cancelled' && (
-                    <button 
-                      className="update-status-btn" 
-                      onClick={() => updateOrderStatus(selectedOrder.id, getNextStatus(selectedOrder.status))}
-                    >
-                      {selectedOrder.status === 'pending' && 'Process Order'}
-                      {selectedOrder.status === 'processing' && 'Mark as Shipped'}
-                      {selectedOrder.status === 'shipped' && 'Mark as Delivered'}
-                    </button>
-                  )}
-                  <button 
-                    className="cancel-order-btn"
-                    onClick={() => updateOrderStatus(selectedOrder.id, 'cancelled')}
-                    disabled={selectedOrder.status === 'delivered' || selectedOrder.status === 'cancelled'}
-                  >
-                    Cancel Order
-                  </button>
-                </div>
-              </div>
-              
-              <div className="order-sections">
-                <div className="order-section">
-                  <h4>Customer Information</h4>
-                  <div className="customer-info">
-                    <p><strong>Name:</strong> {selectedOrder.customer.name}</p>
-                    <p><strong>Email:</strong> {selectedOrder.customer.email}</p>
-                    <p><strong>Phone:</strong> {selectedOrder.customer.phone}</p>
-                  </div>
-                </div>
-                
-                <div className="order-section">
-                  <h4>Shipping Address</h4>
-                  <p>{selectedOrder.shippingAddress}</p>
-                </div>
-              </div>
-              
-              <div className="order-section">
-                <h4>Order Items</h4>
-                <div className="order-items">
-                  <table className="items-table">
-                    <thead>
-                      <tr>
-                        <th>Item</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {selectedOrder.items.map(item => (
-                        <tr key={item.id}>
-                          <td>{item.title}</td>
-                          <td>{item.quantity}</td>
-                          <td>${item.price.toFixed(2)}</td>
-                          <td>${(item.price * item.quantity).toFixed(2)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-              
-              <div className="order-total">
-                <div className="total-row">
-                  <span>Subtotal:</span>
-                  <span>${selectedOrder.amount.toFixed(2)}</span>
-                </div>
-                <div className="total-row">
-                  <span>Shipping:</span>
-                  <span>$0.00</span>
-                </div>
-                <div className="total-row grand-total">
-                  <span>Total:</span>
-                  <span>${selectedOrder.amount.toFixed(2)}</span>
-                </div>
-                <div className="payment-method">
-                  <span>Payment Method:</span>
-                  <span>{selectedOrder.paymentMethod}</span>
-                </div>
-              </div>
+
+            <div className="status-filter">
+              <label htmlFor="status-select">Filter by Status:</label>
+              <select
+                id="status-select"
+                value={statusFilter}
+                onChange={(e) => setStatusFilter(e.target.value)}
+              >
+                <option value="all">All Orders</option>
+                <option value="pending">Pending</option>
+                <option value="processing">Processing</option>
+                <option value="shipped">Shipped</option>
+                <option value="delivered">Delivered</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
             </div>
           </div>
+
+          <div className="orders-table-container">
+            <table className="orders-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Order Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredOrders.map(order => (
+                  <tr key={order.id}>
+                    <td>{order.id}</td>
+                    <td>{order.customer.name}</td>
+                    <td>{order.orderDate}</td>
+                    <td>${order.amount.toFixed(2)}</td>
+                    <td>
+                      <span className={`status-badge ${getStatusBadgeClass(order.status)}`}>
+                        {getStatusIcon(order.status)}
+                        {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
+                      </span>
+                    </td>
+                    <td className="actions-cell">
+                      <button
+                        className="view-details-btn"
+                        onClick={() => viewOrderDetails(order)}
+                      >
+                        <FaEye />
+                        <span>View</span>
+                      </button>
+
+                      {order.status !== 'delivered' && order.status !== 'cancelled' && (
+                        <button
+                          className="update-status-btn"
+                          onClick={() => updateOrderStatus(order.id, getNextStatus(order.status))}
+                        >
+                          {order.status === 'pending' && 'Process'}
+                          {order.status === 'processing' && 'Ship'}
+                          {order.status === 'shipped' && 'Deliver'}
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+                {filteredOrders.length === 0 && (
+                  <tr>
+                    <td colSpan="6" className="no-results">No orders found matching your criteria.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Order Details Modal */}
+          {isDetailModalOpen && selectedOrder && (
+            <div className="order-modal-overlay">
+              <div className="order-modal">
+                <div className="order-modal-header">
+                  <h3>Order Details</h3>
+                  <button className="close-btn" onClick={closeDetailModal}>&times;</button>
+                </div>
+
+                <div className="order-details">
+                  <div className="order-summary">
+                    <div className="order-info">
+                      <div className="order-id">
+                        <h4>Order {selectedOrder.id}</h4>
+                        <span className={`status-badge ${getStatusBadgeClass(selectedOrder.status)}`}>
+                          {getStatusIcon(selectedOrder.status)}
+                          {selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
+                        </span>
+                      </div>
+                      <div className="order-dates">
+                        <div>
+                          <span className="info-label">Order Date:</span>
+                          <span>{selectedOrder.orderDate}</span>
+                        </div>
+                        <div>
+                          <span className="info-label">Expected Delivery:</span>
+                          <span>{selectedOrder.deliveryDate}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="order-actions">
+                      {selectedOrder.status !== 'delivered' && selectedOrder.status !== 'cancelled' && (
+                        <button
+                          className="update-status-btn"
+                          onClick={() => updateOrderStatus(selectedOrder.id, getNextStatus(selectedOrder.status))}
+                        >
+                          {selectedOrder.status === 'pending' && 'Process Order'}
+                          {selectedOrder.status === 'processing' && 'Mark as Shipped'}
+                          {selectedOrder.status === 'shipped' && 'Mark as Delivered'}
+                        </button>
+                      )}
+                      <button
+                        className="cancel-order-btn"
+                        onClick={() => updateOrderStatus(selectedOrder.id, 'cancelled')}
+                        disabled={selectedOrder.status === 'delivered' || selectedOrder.status === 'cancelled'}
+                      >
+                        Cancel Order
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="order-sections">
+                    <div className="order-section">
+                      <h4>Customer Information</h4>
+                      <div className="customer-info">
+                        <p><strong>Name:</strong> {selectedOrder.customer.name}</p>
+                        <p><strong>Email:</strong> {selectedOrder.customer.email}</p>
+                        <p><strong>Phone:</strong> {selectedOrder.customer.phone}</p>
+                      </div>
+                    </div>
+
+                    <div className="order-section">
+                      <h4>Shipping Address</h4>
+                      <p>{selectedOrder.shippingAddress}</p>
+                    </div>
+                  </div>
+
+                  <div className="order-section">
+                    <h4>Order Items</h4>
+                    <div className="order-items">
+                      <table className="items-table">
+                        <thead>
+                          <tr>
+                            <th>Item</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {selectedOrder.items.map(item => (
+                            <tr key={item.id}>
+                              <td>{item.title}</td>
+                              <td>{item.quantity}</td>
+                              <td>${item.price.toFixed(2)}</td>
+                              <td>${(item.price * item.quantity).toFixed(2)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+                  <div className="order-total">
+                    <div className="total-row">
+                      <span>Subtotal:</span>
+                      <span>${selectedOrder.amount.toFixed(2)}</span>
+                    </div>
+                    <div className="total-row">
+                      <span>Shipping:</span>
+                      <span>$0.00</span>
+                    </div>
+                    <div className="total-row grand-total">
+                      <span>Total:</span>
+                      <span>${selectedOrder.amount.toFixed(2)}</span>
+                    </div>
+                    <div className="payment-method">
+                      <span>Payment Method:</span>
+                      <span>{selectedOrder.paymentMethod}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

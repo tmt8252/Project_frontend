@@ -1,6 +1,7 @@
 /* Manage Books styles */
 .manage-books-container {
   padding: 0;
+  margin: 50px auto;
 }
 
 .manage-books-header {

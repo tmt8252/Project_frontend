@@ -1,6 +1,7 @@
 /* Manage Rental Books styles */
 .manage-rental-books-container {
   padding: 0;
+  margin: 50px auto;
 }
 
 .manage-rental-books-header {

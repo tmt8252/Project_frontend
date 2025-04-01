@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { FaEdit, FaTrash, FaPlus, FaSearch, FaCalendarAlt, FaBook } from 'react-icons/fa';
 import './ManageRentalBooks.css';
+import './AdminDashboard.css';
+import AdminNavbar from './AdminNavbar';
+import AdminSidebar from './AdminSidebar';
+
 
 const ManageRentalBooks = () => {
   const [rentalBooks, setRentalBooks] = useState([]);
@@ -76,7 +80,7 @@ const ManageRentalBooks = () => {
         currentlyRented: 2
       }
     ];
-    
+
     setRentalBooks(mockRentalBooks);
   }, []);
 
@@ -127,12 +131,12 @@ const ManageRentalBooks = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    
+
     if (currentBook) {
       // Update existing book
-      const updatedBooks = rentalBooks.map(book => 
-        book.id === currentBook.id ? { 
-          ...book, 
+      const updatedBooks = rentalBooks.map(book =>
+        book.id === currentBook.id ? {
+          ...book,
           ...formData,
           rentalPrice: parseFloat(formData.rentalPrice),
           securityDeposit: parseFloat(formData.securityDeposit),
@@ -154,7 +158,7 @@ const ManageRentalBooks = () => {
       };
       setRentalBooks([...rentalBooks, newBook]);
     }
-    
+
     setIsModalOpen(false);
   };
 
@@ -163,234 +167,241 @@ const ManageRentalBooks = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const filteredBooks = rentalBooks.filter(book => 
+  const filteredBooks = rentalBooks.filter(book =>
     book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     book.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
     book.category.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
-    <div className="manage-rental-books-container">
-      <div className="manage-rental-books-header">
-      <h2>Manage Rental Books</h2>
-        <button className="add-book-btn" onClick={handleAddBook}>
-          <FaPlus /> Add New Rental Book
-        </button>
-      </div>
-      
-      <div className="books-search-bar">
-        <form onSubmit={handleSearch}>
-          <div className="search-input-container">
-            <FaSearch className="search-icon" />
-            <input 
-              type="text" 
-              placeholder="Search by title, author, or category" 
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
+    <div className="admin-container">
+      <AdminNavbar />
+
+      <div className="admin-content-container">
+        <AdminSidebar />
+        <div className="manage-rental-books-container">
+          <div className="manage-rental-books-header">
+            <h2>Manage Rental Books</h2>
+            <button className="add-book-btn" onClick={handleAddBook}>
+              <FaPlus /> Add New Rental Book
+            </button>
           </div>
-        </form>
-      </div>
-      
-      <div className="rental-books-table-container">
-        <table className="rental-books-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Category</th>
-              <th>Price/Day</th>
-              <th>Deposit</th>
-              <th>Max Days</th>
-              <th>Available</th>
-              <th>Rented</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBooks.map(book => (
-              <tr key={book.id}>
-                <td>#{book.id}</td>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.category}</td>
-                <td>${book.rentalPrice.toFixed(2)}</td>
-                <td>${book.securityDeposit.toFixed(2)}</td>
-                <td>{book.maxRentalDays}</td>
-                <td>{book.availableCopies}</td>
-                <td>{book.currentlyRented}</td>
-                <td className="actions-cell">
-                  <button 
-                    className="edit-btn" 
-                    onClick={() => handleEditBook(book)}
-                    aria-label="Edit book"
-                  >
-                    <FaEdit />
-                  </button>
-                  <button 
-                    className="delete-btn" 
-                    onClick={() => handleDeleteBook(book.id)}
-                    aria-label="Delete book"
-                  >
-                    <FaTrash />
-                  </button>
-                </td>
-              </tr>
-            ))}
-            {filteredBooks.length === 0 && (
-              <tr>
-                <td colSpan="10" className="no-results">No rental books found matching your search.</td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-      
-      {/* Add/Edit Rental Book Modal */}
-      {isModalOpen && (
-        <div className="book-modal-overlay">
-          <div className="book-modal">
-            <h3>{currentBook ? 'Edit Rental Book' : 'Add New Rental Book'}</h3>
-            <form onSubmit={handleFormSubmit}>
-              <div className="form-group">
-                <label htmlFor="title">Title</label>
-                <input 
-                  type="text" 
-                  id="title" 
-                  name="title"
-                  value={formData.title}
-                  onChange={handleInputChange}
-                  required
+
+          <div className="books-search-bar">
+            <form onSubmit={handleSearch}>
+              <div className="search-input-container">
+                <FaSearch className="search-icon" />
+                <input
+                  type="text"
+                  placeholder="Search by title, author, or category"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="author">Author</label>
-                <input 
-                  type="text" 
-                  id="author" 
-                  name="author"
-                  value={formData.author}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <textarea 
-                  id="description" 
-                  name="description"
-                  value={formData.description}
-                  onChange={handleInputChange}
-                  rows="3"
-                  required
-                ></textarea>
-              </div>
-              
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="rentalPrice">Rental Price per Day ($)</label>
-                  <input 
-                    type="number" 
-                    id="rentalPrice" 
-                    name="rentalPrice"
-                    step="0.01"
-                    min="0"
-                    value={formData.rentalPrice}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="securityDeposit">Security Deposit ($)</label>
-                  <input 
-                    type="number" 
-                    id="securityDeposit" 
-                    name="securityDeposit"
-                    step="0.01"
-                    min="0"
-                    value={formData.securityDeposit}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="availableCopies">Available Copies</label>
-                  <input 
-                    type="number" 
-                    id="availableCopies" 
-                    name="availableCopies"
-                    min="0"
-                    value={formData.availableCopies}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="maxRentalDays">Maximum Rental Days</label>
-                  <input 
-                    type="number" 
-                    id="maxRentalDays" 
-                    name="maxRentalDays"
-                    min="1"
-                    value={formData.maxRentalDays}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="category">Category</label>
-                <select 
-                  id="category" 
-                  name="category"
-                  value={formData.category}
-                  onChange={handleInputChange}
-                  required
-                >
-                  <option value="">Select a category</option>
-                  <option value="Fiction">Fiction</option>
-                  <option value="Non-Fiction">Non-Fiction</option>
-                  <option value="Children">Children</option>
-                  <option value="Romance">Romance</option>
-                  <option value="Drama">Drama</option>
-                  <option value="Horror">Horror</option>
-                  <option value="Thriller">Thriller</option>
-                </select>
-              </div>
-              
-              <div className="form-group">
-                <label htmlFor="imageUrl">Image URL</label>
-                <input 
-                  type="text" 
-                  id="imageUrl" 
-                  name="imageUrl"
-                  value={formData.imageUrl}
-                  onChange={handleInputChange}
-                  placeholder="https://example.com/book.jpg"
-                />
-              </div>
-              
-              <div className="modal-buttons">
-                <button type="button" onClick={() => setIsModalOpen(false)} className="cancel-btn">
-                  Cancel
-                </button>
-                <button type="submit" className="save-btn">
-                  {currentBook ? 'Update Book' : 'Add Book'}
-                </button>
               </div>
             </form>
           </div>
+
+          <div className="rental-books-table-container">
+            <table className="rental-books-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th>Price/Day</th>
+                  <th>Deposit</th>
+                  <th>Max Days</th>
+                  <th>Available</th>
+                  <th>Rented</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredBooks.map(book => (
+                  <tr key={book.id}>
+                    <td>#{book.id}</td>
+                    <td>{book.title}</td>
+                    <td>{book.author}</td>
+                    <td>{book.category}</td>
+                    <td>${book.rentalPrice.toFixed(2)}</td>
+                    <td>${book.securityDeposit.toFixed(2)}</td>
+                    <td>{book.maxRentalDays}</td>
+                    <td>{book.availableCopies}</td>
+                    <td>{book.currentlyRented}</td>
+                    <td className="actions-cell">
+                      <button
+                        className="edit-btn"
+                        onClick={() => handleEditBook(book)}
+                        aria-label="Edit book"
+                      >
+                        <FaEdit />
+                      </button>
+                      <button
+                        className="delete-btn"
+                        onClick={() => handleDeleteBook(book.id)}
+                        aria-label="Delete book"
+                      >
+                        <FaTrash />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+                {filteredBooks.length === 0 && (
+                  <tr>
+                    <td colSpan="10" className="no-results">No rental books found matching your search.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Add/Edit Rental Book Modal */}
+          {isModalOpen && (
+            <div className="book-modal-overlay">
+              <div className="book-modal">
+                <h3>{currentBook ? 'Edit Rental Book' : 'Add New Rental Book'}</h3>
+                <form onSubmit={handleFormSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="title">Title</label>
+                    <input
+                      type="text"
+                      id="title"
+                      name="title"
+                      value={formData.title}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="author">Author</label>
+                    <input
+                      type="text"
+                      id="author"
+                      name="author"
+                      value={formData.author}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="description">Description</label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      value={formData.description}
+                      onChange={handleInputChange}
+                      rows="3"
+                      required
+                    ></textarea>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="rentalPrice">Rental Price per Day ($)</label>
+                      <input
+                        type="number"
+                        id="rentalPrice"
+                        name="rentalPrice"
+                        step="0.01"
+                        min="0"
+                        value={formData.rentalPrice}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="securityDeposit">Security Deposit ($)</label>
+                      <input
+                        type="number"
+                        id="securityDeposit"
+                        name="securityDeposit"
+                        step="0.01"
+                        min="0"
+                        value={formData.securityDeposit}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="availableCopies">Available Copies</label>
+                      <input
+                        type="number"
+                        id="availableCopies"
+                        name="availableCopies"
+                        min="0"
+                        value={formData.availableCopies}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="maxRentalDays">Maximum Rental Days</label>
+                      <input
+                        type="number"
+                        id="maxRentalDays"
+                        name="maxRentalDays"
+                        min="1"
+                        value={formData.maxRentalDays}
+                        onChange={handleInputChange}
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="category">Category</label>
+                    <select
+                      id="category"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleInputChange}
+                      required
+                    >
+                      <option value="">Select a category</option>
+                      <option value="Fiction">Fiction</option>
+                      <option value="Non-Fiction">Non-Fiction</option>
+                      <option value="Children">Children</option>
+                      <option value="Romance">Romance</option>
+                      <option value="Drama">Drama</option>
+                      <option value="Horror">Horror</option>
+                      <option value="Thriller">Thriller</option>
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="imageUrl">Image URL</label>
+                    <input
+                      type="text"
+                      id="imageUrl"
+                      name="imageUrl"
+                      value={formData.imageUrl}
+                      onChange={handleInputChange}
+                      placeholder="https://example.com/book.jpg"
+                    />
+                  </div>
+
+                  <div className="modal-buttons">
+                    <button type="button" onClick={() => setIsModalOpen(false)} className="cancel-btn">
+                      Cancel
+                    </button>
+                    <button type="submit" className="save-btn">
+                      {currentBook ? 'Update Book' : 'Add Book'}
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };

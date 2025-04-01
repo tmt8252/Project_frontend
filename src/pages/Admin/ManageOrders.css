@@ -1,6 +1,7 @@
 /* Manage Orders Styles */
 .manage-orders-container {
   padding: 0;
+  margin: 50px auto;
 }
 
 .manage-orders-header {
