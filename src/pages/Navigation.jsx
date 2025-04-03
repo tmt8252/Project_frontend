@@ -115,12 +115,14 @@ const Navigation = () => {
                 Sell Your Books
               </NavLink>
             </li>
-            <li>
-              <NavLink to={"/cart"} className="cart-button">
-                <BsCart3 size={20} />
-                <span className="cart-count">{cart.length}</span>
-              </NavLink>
-            </li>
+            {isAuthenticated && (
+              <li>
+                <NavLink to={"/cart"} className="cart-button">
+                  <BsCart3 size={20} />
+                  <span className="cart-count">{cart.length}</span>
+                </NavLink>
+              </li>
+            )}
             <li>
               <div className="user-dropdown">
                 <div className="icon-link user-icon">

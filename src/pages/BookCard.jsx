@@ -1,12 +1,27 @@
 import React, { useState } from "react";
+import { useCart } from "../contexts/CartContext";
+import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const BookCard = ({ book }) => {
   const [isAdding, setIsAdding] = useState(false);
+  const { addToCart, checkInCart } = useCart();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+
+    if (checkInCart(book.id)) {
+      alert('This book is already in your cart!');
+      return;
+    }
+
     setIsAdding(true);
-    // Here you would add your cart logic
-    // For example: addToCart(book)
+    addToCart(book);
     
     setTimeout(() => {
       setIsAdding(false);

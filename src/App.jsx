@@ -21,6 +21,7 @@ import About from "./pages/About";
 import FAQ from "./pages/FAQ";
 import Privacy from "./pages/Privacy";
 import Terms from "./pages/Terms";
+import Order from "./pages/Order";
 
 // Admin pages
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -50,7 +51,8 @@ const RouteHandler = () => {
       <Route path="/Drama" element={<Drama />} />
       <Route path="/Horror" element={<Horror />} />
       <Route path="/Thriller" element={<Thriller />} />
-      
+      <Route path="/order" element={<Order />} />
+            
       {/* New Pages */}
       <Route path="/about" element={<About />} />
       <Route path="/faq" element={<FAQ />} />
@@ -58,7 +60,7 @@ const RouteHandler = () => {
       <Route path="/terms" element={<Terms />} />
       
       {/* Admin routes */}
-      <Route path="/admin" element={<AdminDashboard />} />
+      <Route path="/admin" element={isAdmin ? <AdminDashboard /> : <Login />} />
       <Route path="/admin/manage-books" element={ <ManageBooks /> } />
       <Route path="/admin/manage-orders" element={ <ManageOrders /> } />
       <Route path="/admin/manage-users" element={ <ManageUsers /> } />

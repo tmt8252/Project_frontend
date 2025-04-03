@@ -3,78 +3,35 @@ import { useNavigate } from "react-router-dom";
 import { FiMinus, FiPlus, FiTrash2, FiArrowRight, FiShoppingBag } from "react-icons/fi";
 import "./Cart.css";
 import { useAuth } from "../contexts/AuthContext";
+import { useCart } from "../contexts/CartContext";
 
 const Cart = () => {
-  const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [couponCode, setCouponCode] = useState("");
   const [discountApplied, setDiscountApplied] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
+  const { cart, removeFromCart, updateQuantity } = useCart();
 
-  // Mock data - replace with actual API call
   useEffect(() => {
-    const fetchCartItems = async () => {
-      try {
-        // Simulate API call
-        setTimeout(() => {
-          const mockCartItems = [
-            {
-              id: 1,
-              title: "The Alchemist",
-              author: "Paulo Coelho",
-              price: 299,
-              coverImage: "https://m.media-amazon.com/images/I/71aFt4+OTOL._AC_UF1000,1000_QL80_.jpg",
-              quantity: 1,
-            },
-            {
-              id: 2,
-              title: "Atomic Habits",
-              author: "James Clear",
-              price: 499,
-              coverImage: "https://m.media-amazon.com/images/I/81bGKUa1e0L._AC_UF1000,1000_QL80_.jpg",
-              quantity: 1,
-            },
-            {
-              id: 3,
-              title: "Ikigai",
-              author: "Héctor García",
-              price: 350,
-              coverImage: "https://m.media-amazon.com/images/I/814L+vq01mL._AC_UF1000,1000_QL80_.jpg",
-              quantity: 2,
-            },
-          ];
-          setCartItems(mockCartItems);
-          setLoading(false);
-        }, 800);
-      } catch (err) {
-        setError("Failed to load cart items");
-        setLoading(false);
-      }
-    };
-
-    fetchCartItems();
-  }, []);
+    if (!isAuthenticated) {
+      navigate('/login');
+      return;
+    }
+    setLoading(false);
+  }, [isAuthenticated, navigate]);
 
   const handleQuantityChange = (id, change) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) => {
-        if (item.id === id) {
-          const newQuantity = Math.max(1, item.quantity + change);
-          return { ...item, quantity: newQuantity };
-        }
-        return item;
-      })
-    );
+    updateQuantity(id, change);
   };
 
   const handleRemoveItem = (id) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
+    removeFromCart(id);
   };
 
   const calculateSubtotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
   };
 
   const calculateDiscount = () => {
@@ -100,7 +57,7 @@ const Cart = () => {
       navigate("/login");
       return;
     }
-    navigate("/order", { state: { cartItems, total: calculateTotal() } });
+    navigate("/order", { state: { cartItems: cart, total: calculateTotal() } });
   };
 
   if (loading) {
@@ -112,7 +69,7 @@ const Cart = () => {
     );
   }
 
-  if (cartItems.length === 0) {
+  if (cart.length === 0) {
     return (
       <div className="cart-container empty">
         <div className="empty-cart-icon">
@@ -132,10 +89,10 @@ const Cart = () => {
       <h1>Your Cart</h1>
       <div className="cart-content">
         <div className="cart-items">
-          {cartItems.map((item) => (
+          {cart.map((item) => (
             <div className="cart-item" key={item.id}>
               <div className="item-image">
-                <img src={item.coverImage} alt={item.title} />
+                <img src={item.image} alt={item.title} />
               </div>
               <div className="item-details">
                 <h3>{item.title}</h3>
@@ -145,11 +102,11 @@ const Cart = () => {
                   <div className="quantity-control">
                     <button
                       onClick={() => handleQuantityChange(item.id, -1)}
-                      disabled={item.quantity <= 1}
+                      disabled={(item.quantity || 1) <= 1}
                     >
                       <FiMinus />
                     </button>
-                    <span>{item.quantity}</span>
+                    <span>{item.quantity || 1}</span>
                     <button onClick={() => handleQuantityChange(item.id, 1)}>
                       <FiPlus />
                     </button>
@@ -164,7 +121,7 @@ const Cart = () => {
                 </div>
               </div>
               <div className="item-subtotal">
-                <p>₹{item.price * item.quantity}</p>
+                <p>₹{item.price * (item.quantity || 1)}</p>
               </div>
             </div>
           ))}
