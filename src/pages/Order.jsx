@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FiCreditCard, FiDollarSign, FiCheck, FiMapPin, FiUser, FiPhone, FiMail } from "react-icons/fi";
 import "./Order.css";
 import { useAuth } from "../contexts/AuthContext";
+import { useCart } from "../contexts/CartContext";
 
 const Order = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
+  const { cart, setCart } = useCart();
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
 
@@ -20,7 +22,7 @@ const Order = () => {
     city: "",
     state: "",
     zipCode: "",
-    paymentMethod: "card",
+    paymentMethod: "cod",
     cardNumber: "",
     cardName: "",
     expiryDate: "",
@@ -31,9 +33,17 @@ const Order = () => {
   const [errors, setErrors] = useState({});
   const [isProcessing, setIsProcessing] = useState(false);
 
-  // Get cart data from location state or use empty defaults
-  const cartItems = location.state?.cartItems || [];
-  const totalAmount = location.state?.total || 0;
+  // Get order data from location state or use empty defaults
+  const orderData = location.state?.orderData || { items: [], total: 0, paymentMethod: 'Cash On Delivery' };
+  const cartItems = orderData.items || [];
+  const totalAmount = orderData.total || 0;
+
+  // Clear cart after order is placed
+  useEffect(() => {
+    if (orderComplete) {
+      setCart([]);
+    }
+  }, [orderComplete, setCart]);
 
   // Redirect to cart if no items
   if (cartItems.length === 0 && !orderComplete) {
@@ -179,8 +189,50 @@ const Order = () => {
 
   return (
     <div className="order-container">
-      <h1>Checkout</h1>
+      <h1>Confirm Order</h1>
       <div className="order-content">
+        <div className="order-summary-section">
+          <h2>Order Summary</h2>
+          <div className="order-items">
+            {cartItems.map((item, index) => (
+              <div className="order-item" key={index}>
+                <div className="item-image">
+                  <img src={item.image} alt={item.title} />
+                </div>
+                <div className="item-details">
+                  <h3>{item.title}</h3>
+                  <p className="author">by {item.author}</p>
+                  <p className="purchase-type">
+                    {item.purchaseType === 'firsthand' 
+                      ? 'Firsthand' 
+                      : item.purchaseType === 'secondhand' 
+                        ? 'Secondhand' 
+                        : `Rental (${item.rentalPeriod})`}
+                  </p>
+                  <p className="quantity">Quantity: {item.quantity || 1}</p>
+                </div>
+                <div className="item-price">
+                  <p>₹{item.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="order-total">
+            <div className="total-row">
+              <span>Subtotal</span>
+              <span>₹{totalAmount}</span>
+            </div>
+            <div className="total-row">
+              <span>Delivery</span>
+              <span>Free</span>
+            </div>
+            <div className="total-row grand-total">
+              <span>Total</span>
+              <span>₹{totalAmount}</span>
+            </div>
+          </div>
+        </div>
+
         <form onSubmit={handleSubmit} className="checkout-form">
           <div className="form-section">
             <h2>
@@ -305,22 +357,11 @@ const Order = () => {
           </div>
 
           <div className="form-section">
-            <h2>Payment Method</h2>
+            <h2>
+              <FiCreditCard className="section-icon" />
+              Payment Method
+            </h2>
             <div className="payment-methods">
-              <div className="payment-method">
-                <input
-                  type="radio"
-                  id="card"
-                  name="paymentMethod"
-                  value="card"
-                  checked={formData.paymentMethod === "card"}
-                  onChange={handleInputChange}
-                />
-                <label htmlFor="card">
-                  <FiCreditCard />
-                  Credit / Debit Card
-                </label>
-              </div>
               <div className="payment-method">
                 <input
                   type="radio"
@@ -332,123 +373,29 @@ const Order = () => {
                 />
                 <label htmlFor="cod">
                   <FiDollarSign />
-                  Cash on Delivery
+                  Cash On Delivery
                 </label>
               </div>
             </div>
-
-            {formData.paymentMethod === "card" && (
-              <div className="card-details">
-                <div className="form-group">
-                  <label htmlFor="cardNumber">Card Number</label>
-                  <input
-                    type="text"
-                    id="cardNumber"
-                    name="cardNumber"
-                    value={formData.cardNumber}
-                    onChange={handleInputChange}
-                    placeholder="1234 5678 9012 3456"
-                    maxLength="19"
-                    className={errors.cardNumber ? "error" : ""}
-                  />
-                  {errors.cardNumber && (
-                    <span className="error-message">{errors.cardNumber}</span>
-                  )}
-                </div>
-                <div className="form-group">
-                  <label htmlFor="cardName">Name on Card</label>
-                  <input
-                    type="text"
-                    id="cardName"
-                    name="cardName"
-                    value={formData.cardName}
-                    onChange={handleInputChange}
-                    className={errors.cardName ? "error" : ""}
-                  />
-                  {errors.cardName && (
-                    <span className="error-message">{errors.cardName}</span>
-                  )}
-                </div>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="expiryDate">Expiry Date</label>
-                    <input
-                      type="text"
-                      id="expiryDate"
-                      name="expiryDate"
-                      value={formData.expiryDate}
-                      onChange={handleInputChange}
-                      placeholder="MM/YY"
-                      maxLength="5"
-                      className={errors.expiryDate ? "error" : ""}
-                    />
-                    {errors.expiryDate && (
-                      <span className="error-message">{errors.expiryDate}</span>
-                    )}
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="cvv">CVV</label>
-                    <input
-                      type="text"
-                      id="cvv"
-                      name="cvv"
-                      value={formData.cvv}
-                      onChange={handleInputChange}
-                      maxLength="4"
-                      className={errors.cvv ? "error" : ""}
-                    />
-                    {errors.cvv && (
-                      <span className="error-message">{errors.cvv}</span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            )}
           </div>
 
-          <button
-            type="submit"
-            className={`place-order-button ${isProcessing ? "processing" : ""}`}
-            disabled={isProcessing}
-          >
-            {isProcessing ? "Processing..." : "Place Order"}
-          </button>
+          <div className="form-actions">
+            <button
+              type="button"
+              className="secondary-button"
+              onClick={() => navigate("/checkout-options")}
+            >
+              Back
+            </button>
+            <button
+              type="submit"
+              className="primary-button"
+              disabled={isProcessing}
+            >
+              {isProcessing ? "Processing..." : "Place Order"}
+            </button>
+          </div>
         </form>
-
-        <div className="order-summary">
-          <h2>Order Summary</h2>
-          <div className="summary-items">
-            {cartItems.map((item) => (
-              <div className="summary-item" key={item.id}>
-                <div className="item-image">
-                  <img src={item.coverImage} alt={item.title} />
-                  <span className="item-quantity">{item.quantity}</span>
-                </div>
-                <div className="item-info">
-                  <h3>{item.title}</h3>
-                  <p className="author">by {item.author}</p>
-                </div>
-                <div className="item-price">
-                  ₹{item.price * item.quantity}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="summary-totals">
-            <div className="summary-row">
-              <span>Subtotal</span>
-              <span>₹{totalAmount}</span>
-            </div>
-            <div className="summary-row">
-              <span>Delivery</span>
-              <span>Free</span>
-            </div>
-            <div className="summary-row total">
-              <span>Total</span>
-              <span>₹{totalAmount}</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

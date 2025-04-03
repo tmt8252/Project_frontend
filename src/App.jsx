@@ -16,6 +16,7 @@ import SellYourBook from "./pages/SellYourBook";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import Cart from "./pages/Cart";
+import CheckoutOptions from "./pages/CheckoutOptions";
 // Import new pages
 import About from "./pages/About";
 import FAQ from "./pages/FAQ";
@@ -44,6 +45,7 @@ const RouteHandler = () => {
       <Route path="/registration" element={isAuthenticated ? <Home /> : <Registration />} />
       <Route path="/sell-book" element={<SellYourBook />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/checkout-options" element={<CheckoutOptions />} />
       <Route path="/Fiction" element={<Fiction />} />
       <Route path="/Non-Fiction" element={<NonFiction />} />
       <Route path="/Children" element={<Children />} />

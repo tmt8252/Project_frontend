@@ -31,7 +31,11 @@ const Cart = () => {
   };
 
   const calculateSubtotal = () => {
-    return cart.reduce((total, item) => total + item.price * (item.quantity || 1), 0);
+    return cart.reduce((total, item) => {
+      const price = parseFloat(item.price) || 0;
+      const quantity = parseInt(item.quantity) || 1;
+      return total + (price * quantity);
+    }, 0);
   };
 
   const calculateDiscount = () => {
@@ -57,7 +61,7 @@ const Cart = () => {
       navigate("/login");
       return;
     }
-    navigate("/order", { state: { cartItems: cart, total: calculateTotal() } });
+    navigate("/checkout-options");
   };
 
   if (loading) {
@@ -121,7 +125,7 @@ const Cart = () => {
                 </div>
               </div>
               <div className="item-subtotal">
-                <p>₹{item.price * (item.quantity || 1)}</p>
+                <p>₹{parseFloat(item.price) * (parseInt(item.quantity) || 1)}</p>
               </div>
             </div>
           ))}
