@@ -55,6 +55,7 @@ const Login = () => {
             {message.text}
           </div>
         )}
+        
         <div className="login-box">
           <div className="login-header">
             <div className="avatar">
