@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useCart } from "../contexts/CartContext";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import "./BookCard.css";
 
 const BookCard = ({ book }) => {
   const [isAdding, setIsAdding] = useState(false);
@@ -30,7 +31,9 @@ const BookCard = ({ book }) => {
 
   return (
     <div className="book-card">
-      <img src={book.image} alt={book.title} className="book-image" />
+      <div className="book-image-container">
+        <img src={book.image} alt={book.title} className="book-image" />
+      </div>
       <div className="book-details">
         <h3 className="book-title">{book.title}</h3>
         <p className="book-author">by {book.author}</p>

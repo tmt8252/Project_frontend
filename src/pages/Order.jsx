@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FiCreditCard, FiDollarSign, FiCheck, FiMapPin, FiUser, FiPhone, FiMail } from "react-icons/fi";
+import { FaArrowLeft } from 'react-icons/fa';
 import "./Order.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useCart } from "../contexts/CartContext";
@@ -9,9 +10,11 @@ const Order = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
-  const { cart, setCart } = useCart();
+  const { cart, setCart, clearCart } = useCart();
   const [orderComplete, setOrderComplete] = useState(false);
   const [orderNumber, setOrderNumber] = useState("");
+  const [message, setMessage] = useState({ type: '', text: '' });
+  const [loading, setLoading] = useState(false);
 
   // Default values for the form
   const [formData, setFormData] = useState({
@@ -31,7 +34,6 @@ const Order = () => {
 
   // Form validation states
   const [errors, setErrors] = useState({});
-  const [isProcessing, setIsProcessing] = useState(false);
 
   // Get order data from location state or use empty defaults
   const orderData = location.state?.orderData || { items: [], total: 0, paymentMethod: 'Cash On Delivery' };
@@ -136,20 +138,29 @@ const Order = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setMessage({ type: '', text: '' });
 
-    if (validateForm()) {
-      setIsProcessing(true);
-      
-      // Simulate order processing
-      setTimeout(() => {
-        // Generate a random order number
-        const randomOrderNumber = Math.floor(100000 + Math.random() * 900000).toString();
+    try {
+      if (validateForm()) {
+        // Simulate order processing
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Generate random order number
+        const randomOrderNumber = 'ORD' + Math.random().toString(36).substr(2, 9).toUpperCase();
         setOrderNumber(randomOrderNumber);
+        
+        // Clear cart and show success message
+        clearCart();
         setOrderComplete(true);
-        setIsProcessing(false);
-      }, 2000);
+        setMessage({ type: 'success', text: 'Order placed successfully!' });
+      }
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Failed to place order. Please try again.' });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -189,7 +200,17 @@ const Order = () => {
 
   return (
     <div className="order-container">
-      <h1>Confirm Order</h1>
+      {message.text && (
+        <div className={`message ${message.type}`}>
+          {message.text}
+        </div>
+      )}
+      <div className="order-header">
+        <h1>Confirm Order</h1>
+        <button onClick={() => navigate('/checkout-options')} className="back-button">
+          <FaArrowLeft /> Back
+        </button>
+      </div>
       <div className="order-content">
         <div className="order-summary-section">
           <h2>Order Summary</h2>
@@ -381,18 +402,11 @@ const Order = () => {
 
           <div className="form-actions">
             <button
-              type="button"
-              className="secondary-button"
-              onClick={() => navigate("/checkout-options")}
-            >
-              Back
-            </button>
-            <button
               type="submit"
               className="primary-button"
-              disabled={isProcessing}
+              disabled={loading}
             >
-              {isProcessing ? "Processing..." : "Place Order"}
+              {loading ? 'Placing Order...' : 'Place Order'}
             </button>
           </div>
         </form>

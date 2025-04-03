@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FiMail, FiLock, FiArrowRight, FiUser } from "react-icons/fi";
 import backgroundImage from "../Assets/books.jpg";
 import "../pages/Login.css";
 import { useAuth } from "../contexts/AuthContext";
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState({ type: '', text: '' });
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -17,13 +20,21 @@ const Login = () => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
+    setMessage({ type: '', text: '' });
 
     try {
       await login(email, password);
-      navigate("/");
+      setMessage({ type: 'success', text: 'Login successful! Redirecting...' });
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err.response?.data);
       setError("Invalid email or password");
+      setMessage({ 
+        type: 'error', 
+        text: err.response?.data?.message || 'Failed to login. Please check your credentials.'
+      });
     } finally {
       setIsLoading(false);
     }
@@ -39,6 +50,11 @@ const Login = () => {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="login-container">
+        {message.text && (
+          <div className={`message ${message.type}`}>
+            {message.text}
+          </div>
+        )}
         <div className="login-box">
           <div className="login-header">
             <div className="avatar">
@@ -52,26 +68,37 @@ const Login = () => {
 
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
-              <div className="input-icon-wrapper">
+              <div className="input-group">
                 <input
                   type="email"
-                  placeholder="Email"
+                  id="email"
+                  name="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email"
                   required
                 />
               </div>
             </div>
 
             <div className="form-group">
-              <div className="input-icon-wrapper">
+              <div className="input-group">
                 <input
-                  type="password"
-                  placeholder="Password"
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter your password"
                   required
                 />
+                <button
+                  type="button"
+                  className="toggle-password"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                </button>
               </div>
             </div>
 

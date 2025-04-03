@@ -4,6 +4,7 @@ import { FiMinus, FiPlus, FiTrash2, FiArrowRight, FiShoppingBag } from "react-ic
 import "./Cart.css";
 import { useAuth } from "../contexts/AuthContext";
 import { useCart } from "../contexts/CartContext";
+import { FaTrash, FaArrowLeft } from 'react-icons/fa';
 
 const Cart = () => {
   const [loading, setLoading] = useState(true);
@@ -12,7 +13,8 @@ const Cart = () => {
   const [discountApplied, setDiscountApplied] = useState(false);
   const navigate = useNavigate();
   const { isAuthenticated } = useAuth();
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
+  const [message, setMessage] = useState({ type: '', text: '' });
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -27,7 +29,14 @@ const Cart = () => {
   };
 
   const handleRemoveItem = (id) => {
-    removeFromCart(id);
+    try {
+      removeFromCart(id);
+      setMessage({ type: 'success', text: 'Item removed from cart successfully!' });
+      setTimeout(() => setMessage({ type: '', text: '' }), 3000);
+    } catch (error) {
+      setMessage({ type: 'error', text: 'Failed to remove item from cart.' });
+      setTimeout(() => setMessage({ type: '', text: '' }), 3000);
+    }
   };
 
   const calculateSubtotal = () => {
@@ -58,10 +67,20 @@ const Cart = () => {
 
   const handleCheckout = () => {
     if (!isAuthenticated) {
-      navigate("/login");
+      setMessage({ type: 'error', text: 'Please login to proceed with checkout.' });
+      setTimeout(() => {
+        setMessage({ type: '', text: '' });
+        navigate('/login');
+      }, 2000);
       return;
     }
     navigate("/checkout-options");
+  };
+
+  const calculateItemSubtotal = (item) => {
+    const price = parseFloat(item.price) || 0;
+    const quantity = parseInt(item.quantity) || 1;
+    return (price * quantity).toFixed(2);
   };
 
   if (loading) {
@@ -90,7 +109,17 @@ const Cart = () => {
 
   return (
     <div className="cart-container">
-      <h1>Your Cart</h1>
+      {message.text && (
+        <div className={`message ${message.type}`}>
+          {message.text}
+        </div>
+      )}
+      <div className="cart-header">
+        <h1>Your Cart</h1>
+        <button onClick={() => navigate('/')} className="continue-shopping">
+          <FaArrowLeft /> Continue Shopping
+        </button>
+      </div>
       <div className="cart-content">
         <div className="cart-items">
           {cart.map((item) => (
@@ -101,7 +130,7 @@ const Cart = () => {
               <div className="item-details">
                 <h3>{item.title}</h3>
                 <p className="author">by {item.author}</p>
-                <p className="price">₹{item.price}</p>
+                <p className="price">₹{parseFloat(item.price).toFixed(2)}</p>
                 <div className="item-actions">
                   <div className="quantity-control">
                     <button
@@ -119,13 +148,13 @@ const Cart = () => {
                     className="remove-button"
                     onClick={() => handleRemoveItem(item.id)}
                   >
-                    <FiTrash2 />
+                    <FaTrash />
                     <span>Remove</span>
                   </button>
                 </div>
               </div>
               <div className="item-subtotal">
-                <p>₹{parseFloat(item.price) * (parseInt(item.quantity) || 1)}</p>
+                <p>₹{calculateItemSubtotal(item)}</p>
               </div>
             </div>
           ))}

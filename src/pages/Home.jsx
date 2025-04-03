@@ -25,6 +25,11 @@ const Home = () => {
     navigateChildren("/Children")
   }
 
+  const scrollToCategories = () => {
+    const categoriesSection = document.querySelector('.container');
+    categoriesSection.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <>
       <div className="hero-container">
@@ -38,7 +43,7 @@ const Home = () => {
             Explore our vast collection of books and find stories that will
             transport you to new worlds.
           </p>
-          <button className="hero-button">Shop Now →</button>
+          <button className="hero-button" onClick={scrollToCategories}>Shop Now →</button>
         </div>
       </div>
 

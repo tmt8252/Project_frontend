@@ -60,7 +60,7 @@ const RouteHandler = () => {
       <Route path="/faq" element={<FAQ />} />
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/terms" element={<Terms />} />
-      
+      ``
       {/* Admin routes */}
       <Route path="/admin" element={isAdmin ? <AdminDashboard /> : <Login />} />
       <Route path="/admin/manage-books" element={ <ManageBooks /> } />

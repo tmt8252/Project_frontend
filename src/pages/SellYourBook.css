@@ -1,85 +1,93 @@
 :root {
     /* Primary Colors */
-    --primary: #2c3e50; /* Deep Blue-Gray */
-    --primary-light: #34495e;
-    --primary-dark: #1a252f;
+    --primary: #1B2A41;      /* Midnight Blue */
+    --primary-light: #2C3E5D; /* Lighter Midnight Blue */
+    --primary-dark: #111D2E;  /* Darker Midnight Blue */
   
     /* Secondary Colors */
-    --secondary: #e67e22; /* Warm Orange */
-    --secondary-light: #f39c12;
+    --secondary: #C9A227;     /* Gold Accent */
+    --secondary-light: #E0B534; /* Lighter Gold */
+    --secondary-dark: #A88516;  /* Darker Gold */
   
     /* Text Colors */
-    --text-dark: #2d3748;
-    --text-medium: #4a5568;
-    --text-light: #718096;
+    --text-dark: #333333;     /* Dark Charcoal */
+    --text-medium: #666666;   /* Medium Gray */
+    --text-light: #999999;    /* Light Gray */
   
     /* Background Colors */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-tertiary: #edf2f7;
+    --bg-primary: #F7F5E6;    /* Soft Ivory */
+    --bg-secondary: #E5E5E5;  /* Light Gray */
+    --bg-tertiary: #F0EFE9;   /* Mix of Ivory and Gray */
   
     /* Border Colors */
-    --border-light: #e2e8f0;
-    --border-medium: #cbd5e0;
+    --border-light: #E5E5E5;
+    --border-medium: #CCCCCC;
   
     /* Accent Colors */
-    --accent-red: #dc2626;
-    --accent-green: #059669;
-    --accent-blue: #3b82f6;
+    --accent-red: #E63946;
+    --accent-green: #2ECC71;
+    --accent-blue: #1B2A41;
   }
 .sell-book-container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 2rem auto;
     padding: 2rem;
+    background: var(--bg-primary);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .sell-book-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .sell-book-header h1 {
     color: var(--primary);
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    font-weight: 700;
 }
 
 .sell-book-header p {
     color: var(--text-medium);
     font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .sell-book-form {
-    background: var(--bg-primary);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .form-section {
-    background-color: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-tertiary);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .form-section h2 {
-    color: #2c3e50;
+    color: var(--primary);
     font-size: 1.5rem;
     margin-bottom: 1.5rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
 }
 
 .form-section h2 svg {
-    color: #3498db;
+    color: var(--secondary);
 }
 
 .form-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
 }
 
 .form-group {
@@ -88,20 +96,23 @@
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     color: var(--primary);
     font-weight: 500;
+    font-size: 1rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border-light);
-    border-radius: 4px;
+    padding: 1rem;
+    border: 2px solid var(--border-light);
+    border-radius: 8px;
     font-size: 1rem;
     color: var(--text-dark);
+    transition: all 0.3s ease;
+    background: white;
 }
 
 .form-group input:focus,
@@ -109,26 +120,27 @@
 .form-group textarea:focus {
     outline: none;
     border-color: var(--secondary);
-    box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.2);
+    box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.1);
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
 }
 
 /* Image Upload Styles */
-.image-upload {
-    border: 2px dashed var(--border-light);
+.image-upload-container {
+    border: 2px dashed var(--border-medium);
     padding: 2rem;
+    border-radius: 12px;
     text-align: center;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: border-color 0.3s;
+    background: white;
+    transition: all 0.3s ease;
 }
 
-.image-upload:hover {
+.image-upload-container:hover {
     border-color: var(--secondary);
+    background: var(--bg-tertiary);
 }
 
 .file-input {
@@ -139,92 +151,130 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
     cursor: pointer;
+    padding: 2rem;
 }
 
 .upload-icon {
-    font-size: 2rem;
-    color: #3498db;
+    font-size: 3rem;
+    color: var(--secondary);
 }
 
 .upload-hint {
-    color: #666;
+    color: var(--text-medium);
     font-size: 0.9rem;
 }
 
-.image-preview {
+.image-preview-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     gap: 1rem;
-    margin-top: 1rem;
+    margin-top: 2rem;
 }
 
-.preview-image {
+.image-preview {
     position: relative;
-    width: 100px;
-    height: 100px;
+    aspect-ratio: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.preview-image img {
+.image-preview img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 4px;
 }
 
 .remove-image {
     position: absolute;
-    top: -8px;
-    right: -8px;
+    top: 8px;
+    right: 8px;
     background: var(--accent-red);
-    color: var(--text-light);
+    color: white;
     border: none;
     border-radius: 50%;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.remove-image:hover {
+    transform: scale(1.1);
+    background: #d32f2f;
 }
 
 /* Form Actions */
 .form-actions {
     display: flex;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 
 .submit-btn {
     background: var(--secondary);
-    color: var(--text-light);
+    color: white;
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 4px;
+    padding: 1rem 2.5rem;
+    border-radius: 8px;
     font-size: 1.1rem;
-    font-weight: 500;
+    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s;
-    width: 100%;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .submit-btn:hover {
     background: var(--secondary-dark);
+    transform: translateY(-2px);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+/* Success and Error Messages */
+.success-message,
+.error-message {
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .sell-book-container {
         padding: 1rem;
+        margin: 1rem;
     }
 
     .form-grid {
         grid-template-columns: 1fr;
     }
 
-    .image-preview {
+    .image-preview-container {
         grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
     }
 

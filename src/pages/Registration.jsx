@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FiUser, FiMail, FiLock, FiPhone, FiArrowRight } from "react-icons/fi";
 import backgroundImage from "../Assets/books.jpg";
 import "../pages/Registration.css";
 import { useAuth } from "../contexts/AuthContext";
+import { FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Registration = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,6 +12,9 @@ const Registration = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [number, setNumber] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [message, setMessage] = useState({ type: '', text: '' });
 
   const navigate = useNavigate();
   const { register } = useAuth();
@@ -19,14 +23,43 @@ const Registration = () => {
     navigate("/login");
   };
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "name") {
+      setUsername(value);
+    } else if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
+      setPassword(value);
+    } else if (name === "confirmPassword") {
+      setPassword(value);
+    } else if (name === "number") {
+      setNumber(value);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+    setMessage({ type: '', text: '' });
+
+    if (password !== confirmPassword) {
+      setMessage({ type: 'error', text: 'Passwords do not match!' });
+      setIsLoading(false);
+      return;
+    }
+
     try {
       await register({ username, email, password, number });
-      navigate("/login");
-    } catch (err) {
-      console.log(err);
+      setMessage({ type: 'success', text: 'Registration successful! Redirecting to login...' });
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+    } catch (error) {
+      setMessage({ 
+        type: 'error', 
+        text: error.message || 'Registration failed. Please try again.'
+      });
     } finally {
       setIsLoading(false);
     }
@@ -47,6 +80,12 @@ const Registration = () => {
             <p>Join our community today</p>
           </div>
 
+          {message.text && (
+            <div className={`message ${message.type}`}>
+              {message.text}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit} className="register-form">
             <div className="form-group">
               <div className="input-icon-wrapper">
@@ -55,7 +94,7 @@ const Registration = () => {
                   id="name"
                   placeholder="Enter your name"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -68,7 +107,7 @@ const Registration = () => {
                   id="email"
                   placeholder="Enter your email"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -81,7 +120,7 @@ const Registration = () => {
                   id="password"
                   placeholder="Enter your password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={handleChange}
                   required
                 />
               </div>
@@ -94,7 +133,7 @@ const Registration = () => {
                   id="contact"
                   placeholder="Enter your contact no"
                   value={number}
-                  onChange={(e) => setNumber(e.target.value)}
+                  onChange={handleChange}
                   required
                 />
               </div>
