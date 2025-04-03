@@ -291,7 +291,7 @@ const ManagePreOwnedBooks = () => {
                     
                     <div className="form-row">
                       <div className="form-group">
-                        <label htmlFor="price">Price ($)</label>
+                        <label htmlFor="price">Price (₹)</label>
                         <input 
                           type="number" 
                           id="price" 

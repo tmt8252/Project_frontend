@@ -241,7 +241,7 @@ body {
   flex: 1;
   max-width: 500px;
   background-color: var(--primary);
-  color: var(--text-light);
+  color: var(--text-dark);
   padding: 40px;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -250,7 +250,7 @@ body {
 .form-title {
   font-size: 32px;
   margin-bottom: 20px;
-  color: var(--text-light);
+  color: var(--text-dark);
   text-align: center;
 }
 
@@ -258,7 +258,7 @@ body {
   font-size: 16px;
   margin-bottom: 30px;
   text-align: center;
-  color: var(--text-light);
+  color: var(--text-dark);
 }
 
 .contact-form {
@@ -274,7 +274,7 @@ body {
 
 label {
   font-size: 14px;
-  color: var(--text-light);
+  color: var(--text-dark);
 }
 
 input,
@@ -284,7 +284,7 @@ textarea {
   border: 1px solid #d4a373;
   border-radius: 5px;
   font-size: 14px;
-  background-color: var(--bg-secondary);
+  background-color: var(--bg-tertiary);
   color: var(--primary-dark);
 }
 
@@ -309,7 +309,7 @@ button:hover {
 
 /* Footer Styling */
 .footer {
-    background-color: var(--primary);
+    background-color: var(--primary-dark);
     color: var(--text-light);
     padding: 60px 0 0;
 }

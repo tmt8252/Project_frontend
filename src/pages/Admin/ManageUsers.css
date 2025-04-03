@@ -1,3 +1,32 @@
+:root {
+  /* Primary Colors */
+  --primary: #2c3e50; /* Deep Blue-Gray */
+  --primary-light: #34495e;
+  --primary-dark: #1a252f;
+
+  /* Secondary Colors */
+  --secondary: #e67e22; /* Warm Orange */
+  --secondary-light: #f39c12;
+
+  /* Text Colors */
+  --text-dark: #2d3748;
+  --text-medium: #4a5568;
+  --text-light: #718096;
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #edf2f7;
+
+  /* Border Colors */
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e0;
+
+  /* Accent Colors */
+  --accent-red: #dc2626;
+  --accent-green: #059669;
+  --accent-blue: #3b82f6;
+}
 /* Manage Users Styles */
 .manage-users-container {
   padding: 0;

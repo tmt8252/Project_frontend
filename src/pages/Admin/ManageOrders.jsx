@@ -18,15 +18,15 @@ const ManageOrders = () => {
     // In a real app, you would fetch from API
     const mockOrders = [
       {
-        id: 'ORD-5142',
+        id: 'ORD-5141',
         customer: {
           id: 1,
-          name: 'John Smith',
-          email: 'john.smith@example.com',
+          name: 'Keshav',
+          email: 'keshav12@gmail.com',
           phone: '123-456-7890'
         },
-        orderDate: '2023-04-15',
-        deliveryDate: '2023-04-20',
+        orderDate: '2025-04-15',
+        deliveryDate: '2025-04-20',
         amount: 126.99,
         status: 'pending',
         paymentMethod: 'Credit Card',
@@ -38,15 +38,15 @@ const ManageOrders = () => {
         shippingAddress: '123 Main St, Anytown, CA 12345'
       },
       {
-        id: 'ORD-5141',
+        id: 'ORD-5142',
         customer: {
           id: 2,
-          name: 'Sarah Jones',
-          email: 'sarah.jones@example.com',
-          phone: '234-567-8901'
+          name: 'yug simariya ',
+          email: 'yug5@gmail.com',
+          phone: '484-168-7051'
         },
-        orderDate: '2023-04-14',
-        deliveryDate: '2023-04-19',
+        orderDate: '2025-03-14',
+        deliveryDate: '2025-03-19',
         amount: 89.50,
         status: 'delivered',
         paymentMethod: 'PayPal',
@@ -58,15 +58,15 @@ const ManageOrders = () => {
         shippingAddress: '456 Oak Ave, Somewhere, NY 67890'
       },
       {
-        id: 'ORD-5140',
+        id: 'ORD-5143',
         customer: {
           id: 3,
-          name: 'Mike Brown',
-          email: 'mike.brown@example.com',
+          name: 'Jiya',
+          email: 'jiya12@gmail.com',
           phone: '345-678-9012'
         },
-        orderDate: '2023-04-14',
-        deliveryDate: '2023-04-21',
+        orderDate: '2025-02-12',
+        deliveryDate: '2025-02-15',
         amount: 42.75,
         status: 'shipped',
         paymentMethod: 'Debit Card',
@@ -77,15 +77,15 @@ const ManageOrders = () => {
         shippingAddress: '789 Pine Rd, Nowhere, TX 54321'
       },
       {
-        id: 'ORD-5139',
+        id: 'ORD-5144',
         customer: {
           id: 4,
-          name: 'Emily Davis',
-          email: 'emily.davis@example.com',
-          phone: '456-789-0123'
+          name: 'shadow',
+          email: 'shadow@example.com',
+          phone: '458-796-2134'
         },
-        orderDate: '2023-04-13',
-        deliveryDate: '2023-04-18',
+        orderDate: '2025-01-25',
+        deliveryDate: '2025-02-01',
         amount: 78.25,
         status: 'processing',
         paymentMethod: 'Credit Card',
@@ -227,7 +227,7 @@ const ManageOrders = () => {
                     <td>{order.id}</td>
                     <td>{order.customer.name}</td>
                     <td>{order.orderDate}</td>
-                    <td>${order.amount.toFixed(2)}</td>
+                    <td>₹{order.amount.toFixed(2)}</td>
                     <td>
                       <span className={`status-badge ${getStatusBadgeClass(order.status)}`}>
                         {getStatusIcon(order.status)}
@@ -350,8 +350,8 @@ const ManageOrders = () => {
                             <tr key={item.id}>
                               <td>{item.title}</td>
                               <td>{item.quantity}</td>
-                              <td>${item.price.toFixed(2)}</td>
-                              <td>${(item.price * item.quantity).toFixed(2)}</td>
+                              <td>₹{item.price.toFixed(2)}</td>
+                              <td>₹{(item.price * item.quantity).toFixed(2)}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -362,15 +362,15 @@ const ManageOrders = () => {
                   <div className="order-total">
                     <div className="total-row">
                       <span>Subtotal:</span>
-                      <span>${selectedOrder.amount.toFixed(2)}</span>
+                      <span>₹{selectedOrder.amount.toFixed(2)}</span>
                     </div>
                     <div className="total-row">
                       <span>Shipping:</span>
-                      <span>$0.00</span>
+                      <span>₹0.00</span>
                     </div>
                     <div className="total-row grand-total">
                       <span>Total:</span>
-                      <span>${selectedOrder.amount.toFixed(2)}</span>
+                      <span>₹{selectedOrder.amount.toFixed(2)}</span>
                     </div>
                     <div className="payment-method">
                       <span>Payment Method:</span>

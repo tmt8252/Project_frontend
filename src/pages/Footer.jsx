@@ -43,11 +43,11 @@ const Footer = () => {
                 <div className="footer-section categories">
                     <h3>Categories</h3>
                     <ul>
-                        <li><a href="/fiction">Fiction</a></li>
-                        <li><a href="/non-fiction">Non-Fiction</a></li>
-                        <li><a href="/children">Children's Books</a></li>
-                        <li><a href="/academic">Academic</a></li>
-                        <li><a href="/new-releases">New Releases</a></li>
+                        <li><a href="/Fiction">Fiction</a></li>
+                        <li><a href="/Non-Fiction">Non-Fiction</a></li>
+                        <li><a href="/Children">Children's Books</a></li>
+                        <li><a href="/Horror">Horror</a></li>
+                        <li><a href="/Romance">Romance</a></li>
                     </ul>
                 </div>
 

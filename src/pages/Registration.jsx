@@ -50,7 +50,6 @@ const Registration = () => {
           <form onSubmit={handleSubmit} className="register-form">
             <div className="form-group">
               <div className="input-icon-wrapper">
-                <FiUser className="input-icon" />
                 <input
                   type="text"
                   id="name"
@@ -64,7 +63,6 @@ const Registration = () => {
 
             <div className="form-group">
               <div className="input-icon-wrapper">
-                <FiMail className="input-icon" />
                 <input
                   type="email"
                   id="email"
@@ -78,7 +76,6 @@ const Registration = () => {
 
             <div className="form-group">
               <div className="input-icon-wrapper">
-                <FiLock className="input-icon" />
                 <input
                   type="password"
                   id="password"
@@ -92,7 +89,6 @@ const Registration = () => {
 
             <div className="form-group">
               <div className="input-icon-wrapper">
-                <FiPhone className="input-icon" />
                 <input
                   type="tel"
                   id="contact"

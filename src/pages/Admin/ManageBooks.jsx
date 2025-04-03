@@ -10,6 +10,8 @@ const ManageBooks = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentBook, setCurrentBook] = useState(null);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const [formData, setFormData] = useState({
     title: '',
     author: '',
@@ -77,6 +79,8 @@ const ManageBooks = () => {
       imageUrl: ''
     });
     setIsModalOpen(true);
+    setSuccessMessage('');
+    setErrorMessage('');
   };
 
   const handleEditBook = (book) => {
@@ -91,34 +95,46 @@ const ManageBooks = () => {
       imageUrl: book.imageUrl
     });
     setIsModalOpen(true);
+    setSuccessMessage('');
+    setErrorMessage('');
   };
 
   const handleDeleteBook = (bookId) => {
     if (window.confirm('Are you sure you want to delete this book?')) {
-      // In a real app, you would call an API to delete the book
-      setBooks(books.filter(book => book.id !== bookId));
+      try {
+        // In a real app, you would call an API to delete the book
+        setBooks(books.filter(book => book.id !== bookId));
+        setSuccessMessage('Book deleted successfully');
+      } catch (error) {
+        setErrorMessage('Failed to delete the book. Please try again.');
+      }
     }
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    if (currentBook) {
-      // Update existing book
-      const updatedBooks = books.map(book =>
-        book.id === currentBook.id ? { ...book, ...formData } : book
-      );
-      setBooks(updatedBooks);
-    } else {
-      // Add new book
-      const newBook = {
-        id: Date.now(), // use a proper ID in production
-        ...formData
-      };
-      setBooks([...books, newBook]);
+    try {
+      if (currentBook) {
+        // Update existing book
+        const updatedBooks = books.map(book =>
+          book.id === currentBook.id ? { ...book, ...formData } : book
+        );
+        setBooks(updatedBooks);
+        setSuccessMessage('Book updated successfully');
+      } else {
+        // Add new book
+        const newBook = {
+          id: Date.now(),
+          ...formData
+        };
+        setBooks([...books, newBook]);
+        setSuccessMessage('Book added successfully');
+      }
+      setIsModalOpen(false);
+    } catch (error) {
+      setErrorMessage('Failed to save the book. Please try again.');
     }
-
-    setIsModalOpen(false);
   };
 
   const handleInputChange = (e) => {
@@ -145,6 +161,18 @@ const ManageBooks = () => {
               <FaPlus /> Add New Book
             </button>
           </div>
+
+          {successMessage && (
+            <div className="success-message">
+              {successMessage}
+            </div>
+          )}
+
+          {errorMessage && (
+            <div className="error-message">
+              {errorMessage}
+            </div>
+          )}
 
           <div className="books-search-bar">
             <form onSubmit={handleSearch}>
@@ -253,7 +281,7 @@ const ManageBooks = () => {
 
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="price">Price ($)</label>
+                      <label htmlFor="price">Price (₹)</label>
                       <input
                         type="number"
                         id="price"

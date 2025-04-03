@@ -1,3 +1,32 @@
+:root {
+  /* Primary Colors */
+  --primary: #2c3e50; /* Deep Blue-Gray */
+  --primary-light: #34495e;
+  --primary-dark: #1a252f;
+
+  /* Secondary Colors */
+  --secondary: #e67e22; /* Warm Orange */
+  --secondary-light: #f39c12;
+
+  /* Text Colors */
+  --text-dark: #2d3748;
+  --text-medium: #4a5568;
+  --text-light: #718096;
+
+  /* Background Colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #edf2f7;
+
+  /* Border Colors */
+  --border-light: #e2e8f0;
+  --border-medium: #cbd5e0;
+
+  /* Accent Colors */
+  --accent-red: #dc2626;
+  --accent-green: #059669;
+  --accent-blue: #3b82f6;
+}
 /* Admin Dashboard Styles */
 .admin-container {
   display: flex;
@@ -603,4 +632,115 @@ table tbody tr:hover {
     padding: 20px;
     width: 95%;
   }
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+    border: 1px solid #f5c6cb;
+    text-align: center;
+    font-weight: 500;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Text Colors */
+:root {
+  --text-dark: #333333;
+  --text-medium: #222222;
+  --text-light: #F7F5E6;
+  --primary: #1B2A41;
+  --primary-light: #2C3E5D;
+  --primary-dark: #111D2E;
+  --secondary: #C9A227;
+  --secondary-light: #E0B534;
+  --secondary-dark: #A88516;
+  --border-light: #E5E5E5;
+}
+
+/* Update existing text colors */
+.stat-details h3 {
+  color: var(--text-medium);
+  font-weight: 600;
+}
+
+.stat-details p {
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.stat-details a {
+  color: var(--secondary);
+  font-weight: 500;
+}
+
+table th {
+  color: var(--text-medium);
+  font-weight: 600;
+}
+
+table td {
+  color: var(--text-dark);
+}
+
+/* Status colors */
+.status-pending {
+  background-color: #fff4de;
+  color: var(--secondary-dark);
+}
+
+.status-shipped {
+  background-color: #e0f5ff;
+  color: var(--primary);
+}
+
+.status-delivered {
+  background-color: #deffee;
+  color: var(--teal);
+}
+
+.status-cancelled {
+  background-color: #ffe0e0;
+  color: #ff0000;
+}
+
+/* View button styles */
+.view-btn {
+  background-color: var(--primary);
+  color: var(--text-light);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.view-btn:hover {
+  background-color: var(--primary-dark);
 }

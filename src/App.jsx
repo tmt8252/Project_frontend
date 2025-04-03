@@ -16,6 +16,11 @@ import SellYourBook from "./pages/SellYourBook";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import { CartProvider } from "./contexts/CartContext";
 import Cart from "./pages/Cart";
+// Import new pages
+import About from "./pages/About";
+import FAQ from "./pages/FAQ";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
 
 // Admin pages
 import AdminDashboard from "./pages/Admin/AdminDashboard";
@@ -46,14 +51,20 @@ const RouteHandler = () => {
       <Route path="/Horror" element={<Horror />} />
       <Route path="/Thriller" element={<Thriller />} />
       
+      {/* New Pages */}
+      <Route path="/about" element={<About />} />
+      <Route path="/faq" element={<FAQ />} />
+      <Route path="/privacy" element={<Privacy />} />
+      <Route path="/terms" element={<Terms />} />
+      
       {/* Admin routes */}
-      <Route path="/admin" element={isAdmin ? <AdminDashboard /> : <Login />} />
-      <Route path="/admin/manage-books" element={isAdmin ? <ManageBooks /> : <Login />} />
-      <Route path="/admin/manage-orders" element={isAdmin ? <ManageOrders /> : <Login />} />
-      <Route path="/admin/manage-users" element={isAdmin ? <ManageUsers /> : <Login />} />
-      <Route path="/admin/manage-feedbacks" element={isAdmin ? <ManageFeedbacks /> : <Login />} />
-      <Route path="/admin/manage-rental-books" element={isAdmin ? <ManageRentalBooks /> : <Login />} />
-      <Route path="/admin/manage-pre-owned-books" element={isAdmin ? <ManagePreOwnedBooks /> : <Login />} />
+      <Route path="/admin" element={<AdminDashboard />} />
+      <Route path="/admin/manage-books" element={ <ManageBooks /> } />
+      <Route path="/admin/manage-orders" element={ <ManageOrders /> } />
+      <Route path="/admin/manage-users" element={ <ManageUsers /> } />
+      <Route path="/admin/manage-feedbacks" element={ <ManageFeedbacks /> } />
+      <Route path="/admin/manage-rental-books" element={ <ManageRentalBooks /> } />
+      <Route path="/admin/manage-pre-owned-books" element={ <ManagePreOwnedBooks /> } />
     </Routes>
   );
 };

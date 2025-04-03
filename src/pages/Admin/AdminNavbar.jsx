@@ -4,6 +4,7 @@ import { FaSignOutAlt, FaSearch } from 'react-icons/fa';
 import { useAuth } from '../../contexts/AuthContext';
 import './AdminDashboard.css';
 
+
 const AdminNavbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const { logout } = useAuth();
@@ -24,7 +25,7 @@ const AdminNavbar = () => {
     <header className="admin-navbar">
       <div className="admin-navbar-left">
         <Link to="/admin" className="admin-logo">
-          <h1 className="store-name">BookStore Admin</h1>
+          <h1 className="store-name">BookHaven Admin</h1>
         </Link>
       </div>
       

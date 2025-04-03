@@ -15,6 +15,64 @@ const AdminDashboard = () => {
     feedbacks: 14
   });
 
+  const [recentOrders, setRecentOrders] = useState([
+    {
+      id: '5141',
+      customerName: 'Mohammad Dehgamwala',
+      date: '2025-01-15',
+      amount: '126.99',
+      status: 'Pending'
+    },
+    {
+      id: '5142',
+      customerName: 'yug simariya',
+      date: '2025-03-14',
+      amount: '89.50',
+      status: 'Delivered'
+    },
+    {
+      id: '5143',
+      customerName: 'John',
+      date: '2025-02-20',
+      amount: '42.75',
+      status: 'Shipped'
+    },
+    {
+      id: '5144',
+      customerName: 'Shadow',
+      date: '2025-01-25',
+      amount: '52.00',
+      status: 'Shipped'
+    },
+    {
+      id: '5145',
+      customerName: 'Jiya',
+      date: '2025-02-12',
+      amount: '45.25',
+      status: 'Pending'
+    },
+    {
+      id: '5146',
+      customerName: 'Dev Minipara',
+      date: '2025-04-2',
+      amount: '45.00',
+      status: 'Pending'
+    },
+    {
+      id: '5147',
+      customerName: 'Keshav',
+      date: '2025-03-23',
+      amount: '72.03',
+      status: 'Delivered'
+    }
+  ]);
+
+  const navigate = useNavigate();
+
+  const handleViewOrder = (orderId) => {
+    // Navigate to order details page
+    navigate(`/admin/orders/${orderId}`);
+  };
 
   useEffect(() => {
     // You would fetch actual stats data from your API here
@@ -94,30 +152,27 @@ const AdminDashboard = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>#ORD-5142</td>
-                      <td>John Doe</td>
-                      <td>2023-04-15</td>
-                      <td>$126.99</td>
-                      <td><span className="status-pending">Pending</span></td>
-                      <td><Link to="/admin/orders/5142">View</Link></td>
-                    </tr>
-                    <tr>
-                      <td>#ORD-5141</td>
-                      <td>Sarah Johnson</td>
-                      <td>2023-04-14</td>
-                      <td>$89.50</td>
-                      <td><span className="status-delivered">Delivered</span></td>
-                      <td><Link to="/admin/orders/5141">View</Link></td>
-                    </tr>
-                    <tr>
-                      <td>#ORD-5140</td>
-                      <td>Mike Williams</td>
-                      <td>2023-04-14</td>
-                      <td>$42.75</td>
-                      <td><span className="status-shipped">Shipped</span></td>
-                      <td><Link to="/admin/orders/5140">View</Link></td>
-                    </tr>
+                    {recentOrders.map(order => (
+                      <tr key={order.id}>
+                        <td>#{order.id}</td>
+                        <td>{order.customerName}</td>
+                        <td>{order.date}</td>
+                        <td>₹{order.amount}</td>
+                        <td>
+                          <span className={`status-${order.status.toLowerCase()}`}>
+                            {order.status}
+                          </span>
+                        </td>
+                        <td>
+                          <button 
+                            className="view-btn"
+                            onClick={() => handleViewOrder(order.id)}
+                          >
+                            View
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>

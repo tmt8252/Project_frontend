@@ -300,7 +300,7 @@ const ManageRentalBooks = () => {
 
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="rentalPrice">Rental Price per Day ($)</label>
+                      <label htmlFor="rentalPrice">Rental Price per Day (₹)</label>
                       <input
                         type="number"
                         id="rentalPrice"
@@ -314,7 +314,7 @@ const ManageRentalBooks = () => {
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="securityDeposit">Security Deposit ($)</label>
+                      <label htmlFor="securityDeposit">Security Deposit (₹)</label>
                       <input
                         type="number"
                         id="securityDeposit"

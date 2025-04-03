@@ -18,6 +18,8 @@ const SellYourBook = () => {
     });
 
     const [previewImages, setPreviewImages] = useState([]);
+    const [successMessage, setSuccessMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -25,10 +27,17 @@ const SellYourBook = () => {
             ...prev,
             [name]: value
         }));
+        // Clear messages when user starts typing
+        setSuccessMessage('');
+        setErrorMessage('');
     };
 
     const handleImageUpload = (e) => {
         const files = Array.from(e.target.files);
+        if (files.length > 5) {
+            setErrorMessage('You can only upload up to 5 images');
+            return;
+        }
         setFormData(prev => ({
             ...prev,
             images: [...prev.images, ...files]
@@ -37,6 +46,7 @@ const SellYourBook = () => {
         // Create preview URLs
         const newPreviews = files.map(file => URL.createObjectURL(file));
         setPreviewImages(prev => [...prev, ...newPreviews]);
+        setErrorMessage('');
     };
 
     const removeImage = (index) => {
@@ -50,8 +60,28 @@ const SellYourBook = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Here you would typically send the data to your backend
-        console.log('Form submitted:', formData);
-        // Show success message or redirect
+        try {
+            // Simulate API call
+            console.log('Form submitted:', formData);
+            setSuccessMessage('Your book has been successfully listed for sale! We will review it shortly.');
+            // Reset form
+            setFormData({
+                title: '',
+                author: '',
+                isbn: '',
+                condition: 'Good',
+                price: '',
+                description: '',
+                category: '',
+                sellerName: '',
+                sellerEmail: '',
+                sellerPhone: '',
+                images: []
+            });
+            setPreviewImages([]);
+        } catch (error) {
+            setErrorMessage('Failed to submit the form. Please try again later.');
+        }
     };
 
     return (
@@ -60,6 +90,18 @@ const SellYourBook = () => {
                 <h1>Sell Your Pre-Owned Books</h1>
                 <p>Fill out the form below to list your books for sale</p>
             </div>
+
+            {successMessage && (
+                <div className="success-message">
+                    {successMessage}
+                </div>
+            )}
+
+            {errorMessage && (
+                <div className="error-message">
+                    {errorMessage}
+                </div>
+            )}
 
             <form onSubmit={handleSubmit} className="sell-book-form">
                 <div className="form-section">
@@ -133,7 +175,7 @@ const SellYourBook = () => {
                             </select>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="price">Price ($)</label>
+                            <label htmlFor="price">Price (₹)</label>
                             <input
                                 type="number"
                                 id="price"

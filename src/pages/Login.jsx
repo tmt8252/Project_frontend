@@ -53,7 +53,6 @@ const Login = () => {
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-group">
               <div className="input-icon-wrapper">
-                <FiMail className="input-icon" />
                 <input
                   type="email"
                   placeholder="Email"
@@ -66,7 +65,6 @@ const Login = () => {
 
             <div className="form-group">
               <div className="input-icon-wrapper">
-                <FiLock className="input-icon" />
                 <input
                   type="password"
                   placeholder="Password"

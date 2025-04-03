@@ -44,7 +44,7 @@ const Navigation = () => {
               <NavLink to={"/"}>Home</NavLink>
             </li>
             <li className="dropdown">
-              <NavLink to={"/categories"} className="browse-button">
+              <NavLink className="browse-button">
                 Browse
               </NavLink>
               <div className="dropdown-content">
