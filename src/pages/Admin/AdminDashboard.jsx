@@ -32,34 +32,20 @@ const AdminDashboard = () => {
     },
     {
       id: '5143',
-      customerName: 'John',
-      date: '2025-02-20',
-      amount: '42.75',
-      status: 'Shipped'
-    },
-    {
-      id: '5144',
-      customerName: 'Shadow',
-      date: '2025-01-25',
-      amount: '52.00',
-      status: 'Shipped'
-    },
-    {
-      id: '5145',
       customerName: 'Jiya',
       date: '2025-02-12',
       amount: '45.25',
       status: 'Pending'
     },
     {
-      id: '5146',
+      id: '5144',
       customerName: 'Dev Minipara',
-      date: '2025-04-2',
+      date: '2025-04-02',
       amount: '45.00',
       status: 'Pending'
     },
     {
-      id: '5147',
+      id: '5145',
       customerName: 'Keshav',
       date: '2025-03-23',
       amount: '72.03',

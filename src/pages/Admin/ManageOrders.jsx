@@ -28,8 +28,8 @@ const ManageOrders = () => {
         orderDate: '2025-04-15',
         deliveryDate: '2025-04-20',
         amount: 126.99,
-        status: 'pending',
-        paymentMethod: 'Credit Card',
+        status: 'delivered',
+        paymentMethod: 'COD',
         items: [
           { id: 1, title: 'To Kill a Mockingbird', price: 12.99, quantity: 1 },
           { id: 2, title: '1984', price: 10.99, quantity: 2 },
@@ -49,7 +49,7 @@ const ManageOrders = () => {
         deliveryDate: '2025-03-19',
         amount: 89.50,
         status: 'delivered',
-        paymentMethod: 'PayPal',
+        paymentMethod: 'COD',
         items: [
           { id: 4, title: 'Pride and Prejudice', price: 14.50, quantity: 1 },
           { id: 5, title: 'The Catcher in the Rye', price: 9.99, quantity: 1 },
@@ -69,7 +69,7 @@ const ManageOrders = () => {
         deliveryDate: '2025-02-15',
         amount: 42.75,
         status: 'shipped',
-        paymentMethod: 'Debit Card',
+        paymentMethod: 'COD',
         items: [
           { id: 7, title: 'The Alchemist', price: 13.25, quantity: 1 },
           { id: 8, title: 'Brave New World', price: 12.50, quantity: 1 }
@@ -80,15 +80,35 @@ const ManageOrders = () => {
         id: 'ORD-5144',
         customer: {
           id: 4,
-          name: 'shadow',
-          email: 'shadow@example.com',
-          phone: '458-796-2134'
+          name: 'Mohammad',
+          email: 'test1@mail.com',
+          phone: '458-796-8006'
         },
-        orderDate: '2025-01-25',
-        deliveryDate: '2025-02-01',
+        orderDate: '2025-01-07',
+        deliveryDate: '2025-01-12',
         amount: 78.25,
-        status: 'processing',
-        paymentMethod: 'Credit Card',
+        status: 'pending',
+        paymentMethod: 'COD',
+        items: [
+          { id: 9, title: 'The Lord of the Rings', price: 29.99, quantity: 1 },
+          { id: 10, title: 'Harry Potter', price: 24.99, quantity: 1 },
+          { id: 11, title: 'The Hunger Games', price: 11.99, quantity: 1 }
+        ],
+        shippingAddress: '101 Elm St, Elsewhere, FL 13579'
+      },
+      {
+        id: 'ORD-5145',
+        customer: {
+          id: 5,
+          name: 'Dev',
+          email: 'dev@mail.com',
+          phone: '872-935-7064'
+        },
+        orderDate: '2025-01-13',
+        deliveryDate: '2025-01-19',
+        amount: 78.25,
+        status: 'pending',
+        paymentMethod: 'COD',
         items: [
           { id: 9, title: 'The Lord of the Rings', price: 29.99, quantity: 1 },
           { id: 10, title: 'Harry Potter', price: 24.99, quantity: 1 },
